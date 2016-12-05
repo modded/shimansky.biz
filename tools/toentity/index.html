@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>UTF-8 Unicode to HTML</title>
+		<script>
+			function toEntity() {
+				var a = document.form.utf.value,
+				    b = "";
+				for ( i = 0; i < a.length; i++)
+					b = 127 < a.charCodeAt(i) ? b + ("&#" + a.charCodeAt(i) + ";") : b + a.charAt(i);
+				document.form.entity.value = b
+			};
+		</script>
+	</head>
+	<body>
+		<h1 id="h1">UTF (UTF-8) Unicode to HTML entity / entities online converter</h1>
+		<form method="post" action="" name="form" id="form">
+			<p>
+				Paste text here:
+			</p>			<textarea name="utf" rows="7" cols="80"></textarea>
+<p>				<input type="button" name="convert" value="Convert" onclick="toEntity()" />
+				<input type="reset" name="clear" value="Clear" />
+				<br />
+			</p>
+			<p>
+				Results:
+			</p>
+			<br />
+			<br />
+			<textarea name="entity" rows="7" cols="80" id="output"></textarea>
+</form>	</body>
+</html>

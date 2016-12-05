@@ -1,0 +1,358 @@
+<?php
+/**
+ * $shimansky.biz
+ *
+ * Static web site core scripts
+ * @category PHP
+ * @access public
+ * @copyright (c) 2012 Shimansky.biz
+ * @author Serguei Shimansky <serguei@shimansky.biz>
+ * @license http://opensource.org/licenses/bsd-license.php
+ * @package shimansky.biz
+ * @link https://bitbucket.org/englishextra/shimansky.biz
+ * @link https://github.com/englishextra/shimansky.biz.git
+ */
+$relpa = ($relpa0 = preg_replace("/[\/]+/", "/", $_SERVER['DOCUMENT_ROOT'] . '/')) ? $relpa0 : '';
+ob_start();
+$a_inc = array(
+				'lib/swamper.class.php',
+				'inc/regional.inc',
+				'inc/adminauth.inc',
+				'inc/vars2.inc',
+				'inc/pdo_mysql.inc'
+			);
+foreach ($a_inc as $v) {
+	require_once $relpa . $v;
+}
+class ShowExternalCounters extends Swamper {
+	function __construct() {
+		parent::__construct();
+	}
+	/* stackoverflow.com/questions/3825226/multi-byte-safe-wordwrap-function-for-utf-8 */
+	public function mb_wordwrap($str, $width = 60, $break = "\n", $cut = false, $charset = null) {
+		if ($charset === null) {
+			$charset = mb_internal_encoding();
+		}
+		$pieces = explode($break, $str);
+		$result = array();
+		foreach ($pieces as $piece) {
+			$current = $piece;
+			while ($cut && mb_strlen($current) > $width) {
+				$result[] = mb_substr($current, 0, $width, $charset);
+				$current = mb_substr($current, $width, 2048, $charset);
+			}
+			$result[] = $current;
+		}
+		return implode($break, $result);
+	}
+	/* this function seems to stuck the server,
+	so we use the alternative function above */
+	public function utf8_htmlwrap($str, $width = 60, $break = "\n", $nobreak = "") {
+		/* Split HTML content into an array delimited by < and > */
+		/* The flags save the delimeters and remove empty variables */
+		$content = preg_split("/([<>])/", $str, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+		/* Transform protected element lists into arrays */
+		$nobreak = explode(" ", strtolower($nobreak));
+		/* Variable setup */
+		$intag = false;
+		$innbk = array();
+		$drain = "";
+		/* List of characters it is "safe" to insert line-breaks at */
+		/* It is not necessary to add < and > as they are automatically implied */
+		$lbrks = "/?!%)-}]\\\"':;&";
+		/* Is $str a UTF8 string? */
+		$utf8 = (preg_match("/^([\x09\x0A\x0D\x20-\x7E]|[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2})*$/", $str)) ? "u" : "";
+		while (list(, $value) = each($content)) {
+			switch ($value) {
+				/* If a < is encountered, set the "in-tag" flag */
+				case "<" :
+					$intag = true;
+					break;
+				/* If a > is encountered, remove the flag */
+				case ">" :
+					$intag = false;
+					break;
+				default :
+					/* If we are currently within a tag... */
+					if ($intag) {
+						/* Create a lowercase copy of this tag's contents */
+						$lvalue = strtolower($value);
+						/* If the first character is not a / then this is an opening tag */
+						if ($lvalue{0} != "/") {
+							/* Collect the tag name */
+							preg_match("/^(\w*?)(\s|$)/", $lvalue, $t);
+							/* If this is a protected element, activate the associated protection flag */
+							if (in_array($t[1], $nobreak))
+								array_unshift($innbk, $t[1]);
+							/* Otherwise this is a closing tag */
+						} else {
+							/* If this is a closing tag for a protected element, unset the flag */
+							if (in_array(substr($lvalue, 1), $nobreak)) {
+								reset($innbk);
+								while (list($key, $tag) = each($innbk)) {
+									if (substr($lvalue, 1) == $tag) {
+										unset($innbk[$key]);
+										break;
+									}
+								}
+								$innbk = array_values($innbk);
+							}
+						}
+						/* Else if we're outside any tags... */
+					} else if ($value) {
+						/* If unprotected... */
+						if (!count($innbk)) {
+							/* Use the ACK (006) ASCII symbol to replace all HTML entities temporarily */
+							$value = str_replace("\x06", "", $value);
+							preg_match_all("/&([a-z\d]{2,7}|#\d{2,5});/i", $value, $ents);
+							$value = preg_replace("/&([a-z\d]{2,7}|#\d{2,5});/i", "\x06", $value);
+							/* Enter the line-break loop */
+							do {
+								$store = $value;
+								/* Find the first stretch of characters over the $width limit */
+								if (preg_match("/^(.*?\s)?([^\s]{" . $width . "})(?!(" . preg_quote($break, "/") . "|\s))(.*)$/s{$utf8}", $value, $match)) {
+									if (strlen($match[2])) {
+										/* Determine the last "safe line-break" character within this match */
+										for ($x = 0, $ledge = 0; $x < strlen($lbrks); $x++)
+											$ledge = max($ledge, strrpos($match[2], $lbrks{$x}));
+										if (!$ledge)
+											$ledge = strlen($match[2]) - 1;
+										/* Insert the modified string */
+										$value = $match[1] . substr($match[2], 0, $ledge + 1) . $break . substr($match[2], $ledge + 1) . $match[4];
+									}
+								}
+								/* Loop while overlimit strings are still being found */
+							} while ($store != $value);
+							/* Put captured HTML entities back into the string */
+							foreach ($ents[0] as $ent)
+								$value = preg_replace("/\x06/", $ent, $value, 1);
+						}
+					}
+			}
+			/* Send the modified segment down the drain */
+			$drain .= $value;
+		}
+		/* Return contents of the drain */
+		return $drain;
+	}
+	public function return_domain_name($url) {
+		$d = preg_replace("/(http|https|ftp)\:\/\//", '', $url);
+		$t = stristr($d, '/');
+		$d = str_replace($t, '', $d);
+		return $d;
+	}
+	public function prepare_str($s, $domain, $domain_highlighted, $slen_domain) {
+		$s = urldecode($s);
+		$s = stripslashes($s);
+		$s = $this -> safe_str($s);
+		$s = $this -> text_symbs_to_dec_ents($s);
+		$s = $this -> acc_text_to_dec_ents($s);
+		$s = $this -> remove_comments($s);
+		$s = $this -> remove_tags($s);
+		$s = $this -> ensure_lt_gt($s);
+		$s = $this -> ord_space($s);
+		$s = str_replace(array('https://', 'http://', 'file:///', 'ftp://', '+'), array('', '', '', '', ' '), $s);
+		/* replace only once */
+		$s = preg_replace("/${domain}/i", "${domain_highlighted}", $s, 1);
+		/* this makes the server stuck */
+		/* if ($this -> is_utf8($s)) { */
+			/* $s = $this -> utf8_htmlwrap($s, $width = $slen_domain, $break = ' ', $nobreak = ''); */
+			/* break should be carriage return not empty space: you make break span tags*/
+			$s = $this -> mb_wordwrap($s, $width = $slen_domain, $break = "\n", $cut = true, "UTF-8");
+		/*}*/
+		$s = $this -> ensure_amp($s);
+		return $s;
+	}
+	public function db_table_exists($db_handler, $table) {
+		return $r = $db_handler -> query("SELECT count(*) from `" . $table . "`") ? true : false;
+	}
+}
+if (!isset($ShowExternalCounters) || empty($ShowExternalCounters)) {
+	$ShowExternalCounters = new ShowExternalCounters();
+}
+$event = $ShowExternalCounters -> get_post('event');
+$table_name = $pt_externalcounters_table_name;
+if ($event == 'clear') {
+	try {
+		/**
+		 * if table exists
+		 */
+		if ($ShowExternalCounters -> db_table_exists($DBH, $table_name)) {
+			$DBH -> query("TRUNCATE TABLE `" . $table_name . "`;");
+			header("HTTP/1.0 404 Not Found");
+			header('location: ' . str_replace('&amp;', '&', $_SERVER['PHP_SELF']));
+		}
+		$DBH = null;
+	} catch (PDOException $e) {
+		echo $e -> getMessage();
+	}
+	exit ;
+}
+?><!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="robots" content="noindex,nofollow" />
+		<title>Журнал посещений</title>
+		<!-- <link rel="stylesheet" href="../libs/admin/css/bundle.min.css" /> -->
+		<style>
+			body{color:transparent;background-color:#F0F0F0;}a,ul,li,.panel-nav-menu li a,.holder-panel-menu-more{color:inherit;}ul{list-style-type:none;}.panel-nav-menu{background:transparent;}.panel-nav-menu,.holder-panel-menu-more,.btn-nav-menu,.btn-menu-more,.btn-show-vk-like,.share-buttons,.holder-search-form,.holder-contents-select,.location-qr-code,.contacts-qr-code,.cd-prev,.cd-next,.pswp,.article-gallery,.superbox,.github-fork-ribbon a{display:none;}.ya-site-form.ya-site-form_inited_no{visibility:hidden}.page{opacity:0;}
+		</style>
+	</head>
+	<body>
+		<div class="page" id="page" role="document">
+			<div class="stripe-top"></div>
+			<div class="header" id="header">
+				<a class="sitelogo" href="../index.html"></a>
+			</div>
+			<div id="content">
+				<div id="container" class="container" role="main">
+					<div class="row">
+						<div class="col span_12 cf">
+							<div class="span_1140 textcenter">
+								<h1>Журнал посещений</h1>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col span_12 cf">
+							<div class="span_1140">
+								<table class="respond">
+									<thead>
+										<tr class="pme-header">
+											<th class="pme-header">Adddate</th>
+											<th class="pme-header" style="width:25%;">Referer
+											<br />
+											Self</th>
+											<th class="pme-header">Page title</th>
+											<th class="pme-header">Browser
+											<br />
+											Os</th>
+											<th class="pme-header">Host
+											<br />
+											Ip</th>
+										</tr>
+									</thead>
+									<tbody><?php
+try {
+	/**
+	 * if table exists
+	 */
+	if ($ShowExternalCounters->db_table_exists($DBH, $table_name)) {
+		$SQL = "SELECT `id`, `adddate`, `random`, `user_login`, `referer`, `self`, `page_title`, `browser`, `number`, `os`, `os_number`, `host`, `ip` FROM (SELECT `id`, `adddate`, `random`, `user_login`, `referer`, `self`, `page_title`, `browser`, `number`, `os`, `os_number`, `host`, `ip` ";
+		$SQL .= "FROM `" . $table_name . "` ";
+		$SQL .= "WHERE `random`!='' AND `adddate` >= :vars2_start_time AND `adddate` <= :vars2_end_time ORDER BY `adddate` DESC LIMIT 500) as tbl order by tbl.`adddate`;";
+		$STH = $DBH->prepare($SQL);
+		$STH->bindValue(":vars2_start_time", (int)$vars2_start_time, PDO::PARAM_INT);
+		$STH->bindValue(":vars2_end_time", (int)$vars2_end_time, PDO::PARAM_INT);
+		$STH->execute();
+		/**
+		 * http://stackoverflow.com/questions/460010/work-around-for-php5s-pdo-rowcount-mysql-issue
+		 * replaces: if (mysql_num_rows($query) > 0) {
+		 */
+//if ($DBH->query("SELECT FOUND_ROWS()")->fetchColumn() > 0) {
+		if ($STH->rowCount() > 0) {
+			/**
+			 * replaces while ($fr = mysql_fetch_row($query)) {
+			 */
+			while ($fr = $STH->fetch(PDO::FETCH_NUM)) {
+				$fr4_domain = $ShowExternalCounters->return_domain_name($fr[4]);
+				$fr4_highlighted = ($fr4_domain && ($fr4_domain != $vars2_site_root_printable)) ? '<span class="IndianRed">' . strtoupper($fr4_domain) . '</span>' : strtoupper($fr4_domain);
+				$fr4_text = $fr[4];
+				$fr4_text = $ShowExternalCounters->prepare_str($fr4_text, $fr4_domain, $fr4_highlighted, 30);
+				$fr5_domain = $ShowExternalCounters->return_domain_name($fr[5]);
+				$fr5_highlighted = ($fr5_domain && ($fr5_domain != $vars2_site_root_printable)) ? '<span class="FireBrick">' . strtoupper($fr5_domain) . '</span>' : strtoupper($fr5_domain);
+				$fr5_text = $fr[5];
+				$fr5_text = $ShowExternalCounters->prepare_str($fr5_text, $fr5_domain, $fr5_highlighted, 30);
+				/*
+				these functions freeze PDO and mysqli on windows but not on linux
+				if (!empty($fr4_text) && !is_utf8(urldecode($fr4_text))) {
+				$fr4_text = '<strong>Non-UTF8 referrer:</strong> ' . $ShowExternalCounters->cp1251_to_utf8(urldecode($fr4_text));
+				}
+				if (!empty($fr6) && !is_utf8(urldecode($fr6))) {
+				$fr6 = '<strong>Non-UTF8 title:</strong> ' . $ShowExternalCounters->cp1251_to_utf8(urldecode($fr6));
+				}
+				*/
+				/*
+				if (preg_match("/go\.mail\.ru\/search/ei", urldecode($fr[4]))) {
+				}
+				*/
+				$fr11_text = $fr[11];
+				if (preg_match("/[A-Za-z]/", $fr11_text)) {
+					if (strpos($fr11_text, ".") !== false && substr_count($fr11_text, ".") > 0) {
+						$re = preg_match("/[^\.\/]+\.[^\.\/]+$/", $fr11_text, $matches);
+						$fr11_link = htmlentities('http://' . $matches[0] . '/');
+						$fr11_text = '<a href="' . $fr11_link . '" target="_blank">' . wordwrap($fr11_text, 20, ' ', 1) . '</a>';
+					}
+				}
+				echo '
+<tr class="pme-sortinfo">
+<td class="pme-cell-0" style="width:5%;">' . date("H:i:s", $fr[1]) . '<br />' . $fr[1] . '
+<td class="pme-cell-0" style="width:25%;"><span class="SlateGray"><strong>from:</strong>&#160;&#160;' . $fr4_text . '</span>&#160;&#160;<a href="' . $ShowExternalCounters->ensure_amp($fr[4]) . '" target="_blank">[&#8594;]</a><br /><span class="DarkSlateGray"><strong>to:</strong>&#160;&#160;' . $fr5_text . '</span>&#160;&#160;<a href="' . $ShowExternalCounters->ensure_amp($fr[5]) . '" target="_blank">[&#8594;]</a></td>
+<td class="pme-cell-0" style="width:25%;"><span class="DarkSlateGray">' . $ShowExternalCounters->ensure_amp($ShowExternalCounters->remove_tags(urldecode($fr[6]))) . '</span></td>
+<td class="pme-cell-0" style="width:25%;"><span class="FireBrick">' . $fr[7] . ' ' . $fr[8] . '</span><br /><span class="SeaGreen">' . $fr[9] . '</span><br /><span class="DarkSlateGray">' . $fr[10] . '</span></td>
+<td class="pme-cell-0" style="width:20%;"><span class="DarkSlateGray">' . $fr11_text . '<br /><a href="http://' . htmlentities($fr[12]) . '/" target="_blank">' . htmlentities(wordwrap($fr[12], 20, ' ', 1)) . '</a><br /><a href="http://ip-lookup.net/?ip=' . urlencode($fr[12]) . '" target="_blank">IP-LOOKUP</a>&#160;<a href="http://www.ripe.net/fcgi-bin/whois?form_type=simple&amp;full_query_string=&amp;searchtext=' . urlencode($fr[12]) . '&amp;submit.x=13&amp;submit.y=14&amp;submit=Search" target="_blank">RIPE</a>&#160;';
+				if ($ShowExternalCounters->is_ip($fr[12])) {
+					echo '<a href="http://www.ipchecking.com/?ip=' . urlencode($fr[12]) . '&amp;check=Lookup" target="_blank">ipchecking</a>';
+				} else {
+					echo $fr[12];
+				}
+				echo '&#160;<a href="http://www.robtex.com/ip/' . urlencode($fr[12]) . '.html" target="_blank">robtex</a></span></td>
+</tr>' . "\n";
+			}
+		}
+	}
+	$DBH = null;
+} catch (PDOException $e) {
+	echo $e->getMessage();
+}
+ob_end_flush();
+?></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col span_12 cf">
+							<div class="span_1140 textcenter">
+								<form action="#" id="actions_form" method="post">
+									<p>
+										<input type="hidden" name="event" value="clear" />
+										<input class="btn uk-button" type="button" onclick="javascipt:document.location.reload();" value="Обновить" />
+										<input class="btn uk-button" type="submit" value="Очистить" />
+									</p>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			;(function(){var loadJS=function(_src,callback){"use strict";var ref=document.getElementsByTagName("script")[0];var script=document.createElement("script");script.src=_src;script.async=true;ref.parentNode.insertBefore(script,ref);if(callback&&"function"===typeof callback){script.onload=callback;}return script;};("undefined"!==typeof window?window:this).loadJS=loadJS;}());
+			;(function(){var loadCSS=function(_href,callback,media,before){"use strict";var doc=document;var ss=doc.createElement("link");var ref;if(before){ref=before;}else{var refs=(doc.body||doc.getElementsByTagName("head")[0]).childNodes;ref=refs[refs.length-1];}var sheets=doc.styleSheets;ss.rel="stylesheet";ss.href=_href;ss.media="only x";if(callback&&"function"===typeof callback){ss.onload=callback;}function ready(cb){if(doc.body){return cb();}setTimeout(function(){ready(cb);});}ready(function(){ref.parentNode.insertBefore(ss,(before?ref:ref.nextSibling));});var onloadcssdefined=function(cb){var resolvedHref=ss.href;var i=sheets.length;while(i--){if(sheets[i].href===resolvedHref){return cb();}}setTimeout(function(){onloadcssdefined(cb);});};function loadCB(){if(ss.addEventListener){ss.removeEventListener("load",loadCB);}ss.media=media||"all";}if(ss.addEventListener){ss.addEventListener("load",loadCB);}ss.onloadcssdefined=onloadcssdefined;onloadcssdefined(loadCB);return ss;};("undefined"!==typeof window?window:this).loadCSS=loadCSS;}());
+			loadCSS("../libs/admin/css/bundle.min.css");
+		</script><link rel="stylesheet" property="stylesheet" href="../libs/admin/css/bundle.min.css" /></noscript>
+		<script>
+				;(function(){var a=document.createElement("div");a.innerHTML="\x3c!--[if lt IE 9]><i></i><![endif]--\x3e";1==a.getElementsByTagName("i").length&&loadJS("//cdn.jsdelivr.net/es5.shim/4.5.9/es5-shim.min.js");})();
+				Event.prototype.preventDefault&&Event.prototype.stopPropagation&&Element.prototype.addEventListener||loadJS("../cdn/chriswrightdesign/js/ie8Events.fixed.min.js");
+				window.requestAnimationFrame||loadJS("../cdn/paulirish/js/rAF.fixed.min.js");
+				self.setImmediate||loadJS("../cdn/setImmediate/1.0.5/js/setImmediate.fixed.min.js");
+				window.location.origin||loadJS("../cdn/location-origin.js/1.1.4/js/location-origin.fixed.min.js");
+				window.matchMedia||loadJS("../cdn/paulirish/js/matchMedia.fixed.min.js");
+				"undefined"===typeof window.Element||"dataset"in document.documentElement||loadJS("../cdn/polyfills/0.1/js/dataset.fixed.min.js");
+				;("undefined"===typeof window.Element||"classList"in document.documentElement)&&!navigator.userAgent.match(/Trident\/7\./)||loadJS("../cdn/classlist-polyfill/d94a623c25bc69caf09f7089c0066fd65e760e82/classList.fixed.min.js");
+				window.Promise||loadJS("../cdn/es6-promise/3.2.2/js/es6-promise.fixed.min.js");
+				window.fetch||loadJS("../cdn/fetch/1.0.0/js/fetch.fixed.min.js");
+				self.WeakMap||loadJS("../cdn/weakmap-polyfill/2.0.0/js/weakmap-polyfill.fixed.min.js");
+				self.MutationObserver||loadJS("../cdn/webcomponentsjs/0.7.22/MutationObserver/js/MutationObserver.fixed.min.js");
+				window.URL&&window.URL.prototype&&"href"in window.URL.prototype||loadJS("../cdn/polyfill/0.1.27/js/url.fixed.min.js");
+				"undefined"!==typeof window.localStorage&&"undefined"!==typeof window.sessionStorage||loadJS("../cdn/polyfills/0.1/js/Storage.fixed.min.js");
+				/*"undefined"===typeof window.orientation&&-1===navigator.userAgent.indexOf("IEMobile")&&loadJS("../cdn/lodash/4.16.4/js/lodash.core.min.js");*/
+		</script>
+		<script>
+				loadJS("../libs/admin/js/bundle.min.js",function(){});
+		</script>
+	</body>
+</html>

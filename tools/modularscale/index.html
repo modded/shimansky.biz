@@ -1,0 +1,1122 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Modularscale</title>
+		<meta content="IE=edge,chrome=1" http-equiv=X-UA-Compatible />
+		<meta name=viewport content="width=device-width, initial-scale=1" />
+		<style>
+﻿html {
+	background-color: #ebe6e0;
+}
+body {
+	font-family: "Segoe UI",sans-serif;
+	line-height: 1.27202;
+}
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Cambria",serif;
+	margin: 0;
+}
+body,article,section,ul,li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+small {
+	font-size: 0.82491em;
+	line-height: 1.27202;
+}
+a:link,a:visited,a:hover {
+	-moz-transition: background-color,0.5s;
+	-o-transition: background-color,0.5s;
+	-webkit-transition: background-color,0.5s;
+	transition: background-color,0.5s;
+	color: #607890;
+	text-decoration: none;
+}
+a:hover,a:focus {
+	text-decoration: underline;
+}
+.panel {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	padding: 1em;
+	overflow: auto;
+	background-color: white;
+	-moz-box-shadow: -0.23607em 0 0 0 rgba(0,0,0,0.05),-1px 0 0 0 rgba(0,0,0,0.1);
+	-webkit-box-shadow: -0.23607em 0 0 0 rgba(0,0,0,0.05),-1px 0 0 0 rgba(0,0,0,0.1);
+	box-shadow: -0.23607em 0 0 0 rgba(0,0,0,0.05),-1px 0 0 0 rgba(0,0,0,0.1);
+	border-top: 0.23607em solid #607890;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+@media (max-width: 34em) {
+	.panel {
+		bottom: 2.61803em;
+		width: 96%;
+	}
+}
+.ios-webapp .panel {
+	border-top: none;
+	top: 20px;
+}
+svg {
+	fill: currentcolor;
+}
+.svg-pm {
+	width: 2.05817em;
+	height: 2.05817em;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+	display: block;
+	margin: 0;
+}
+.tabs {
+	border-top: 1px solid #bdafa0;
+	margin-top: 2.61803em;
+	padding: 0;
+}
+a.tab {
+	color: inherit;
+	font-size: 0.82491em;
+	text-decoration: none;
+	padding: 0.23607em 0.61803em;
+	display: inline-block;
+}
+a.tab:hover,a.tab:focus {
+	background: #d6d5d4;
+}
+body.mode-web a.tab.web,body.mode-sass a.tab.sass,body.mode-js a.tab.js {
+	background: #566b81;
+	color: white;
+}
+.logo {
+	font-size: 2.37781em;
+	letter-spacing: 0.01em;
+	font-weight: 300;
+	line-height: 1;
+	margin: 0 0 0.61803em;
+}
+.form {
+	left: 0;
+	width: 16em;
+	background-color: #ebe6e0;
+	color: #524e47;
+}
+@media (max-width: 34em) {
+	.form {
+		width: 96%;
+	}
+}
+.form form {
+	margin-bottom: 1.61803em;
+	position: relative;
+}
+.label {
+	border-top: 0.23607em solid #4a4640;
+	font-family: inherit;
+	font-size: 0.78615em;
+	font-weight: 400;
+	letter-spacing: 0.09017em;
+	margin: 2.61803em 0 0.61803em;
+	padding: 0.38197em 0 0;
+}
+.label:first-child {
+	border-top: none;
+	margin-top: 0.61803em;
+}
+.error {
+	background: #D85151;
+	padding: 0.23607em 0.61803em;
+	color: white;
+	border: 2px solid #e19b98;
+	-moz-transition: all 0.25s;
+	-o-transition: all 0.25s;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+	opacity: 1;
+	margin: 0 0 -1em;
+}
+.error:empty {
+	opacity: 0;
+	padding: 0 0.61803em;
+	margin: -1em 0 -1em;
+}
+.button-pm {
+	background: #607890;
+	border-radius: 50%;
+	padding: 0;
+	border: 1px solid white;
+	position: absolute;
+	margin-top: -2.67376em;
+	right: 4.6em;
+	font-size: .75em;
+	-moz-transition: all 0.25s;
+	-o-transition: all 0.25s;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+.button-pm:hover,.button-pm:focus {
+	-moz-animation: pop-plus 0.25s;
+	-webkit-animation: pop-plus 0.25s;
+	animation: pop-plus 0.25s;
+	animation-timing-function: ease-out;
+	background: #566b81;
+}
+.button-pm.remove {
+	right: 1.75em;
+	opacity: 0;
+	-moz-transform: rotateZ(225deg) scale(0);
+	-ms-transform: rotateZ(225deg) scale(0);
+	-webkit-transform: rotateZ(225deg) scale(0);
+	transform: rotateZ(225deg) scale(0);
+}
+.button-pm.remove:hover,.button-pm.remove:focus {
+	-moz-animation: pop-minus 0.25s;
+	-webkit-animation: pop-minus 0.25s;
+	animation: pop-minus 0.25s;
+	animation-timing-function: ease-out;
+}
+.multi+a+.button-pm.remove {
+	opacity: 1;
+	-moz-transform: rotateZ(45deg) scale(1);
+	-ms-transform: rotateZ(45deg) scale(1);
+	-webkit-transform: rotateZ(45deg) scale(1);
+	transform: rotateZ(45deg) scale(1);
+}
+.no-add+.button-pm {
+	-moz-transform: rotateZ(-270deg) scale(0);
+	-ms-transform: rotateZ(-270deg) scale(0);
+	-webkit-transform: rotateZ(-270deg) scale(0);
+	transform: rotateZ(-270deg) scale(0);
+}
+#formRatios.open ~ .button-pm {
+	display: none;
+}
+@-moz-keyframes pop-plus {
+	0% {
+		-moz-transform: scale(1.1) rotateZ(90deg);
+		transform: scale(1.1) rotateZ(90deg);
+	}
+}
+@-webkit-keyframes pop-plus {
+	0% {
+		-webkit-transform: scale(1.1) rotateZ(90deg);
+		transform: scale(1.1) rotateZ(90deg);
+	}
+}
+@keyframes pop-plus {
+	0% {
+		-moz-transform: scale(1.1) rotateZ(90deg);
+		-ms-transform: scale(1.1) rotateZ(90deg);
+		-webkit-transform: scale(1.1) rotateZ(90deg);
+		transform: scale(1.1) rotateZ(90deg);
+	}
+}
+@-moz-keyframes pop-minus {
+	0% {
+		-moz-transform: scale(1.1) rotateZ(135deg);
+		transform: scale(1.1) rotateZ(135deg);
+	}
+}
+@-webkit-keyframes pop-minus {
+	0% {
+		-webkit-transform: scale(1.1) rotateZ(135deg);
+		transform: scale(1.1) rotateZ(135deg);
+	}
+}
+@keyframes pop-minus {
+	0% {
+		-moz-transform: scale(1.1) rotateZ(135deg);
+		-ms-transform: scale(1.1) rotateZ(135deg);
+		-webkit-transform: scale(1.1) rotateZ(135deg);
+		transform: scale(1.1) rotateZ(135deg);
+	}
+}
+input {
+	-webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+	font-feature-settings: "lnum" 1, "tnum" 1;
+}
+label:before {
+	position: absolute;
+	width: 1em;
+	right: 0;
+	text-align: center;
+	content: 'a';
+	color: #607890;
+}
+label:nth-child(2):before {
+	content: 'b';
+	color: #906090;
+}
+label:nth-child(3):before {
+	content: 'c';
+	color: #907860;
+}
+label:nth-child(4):before {
+	content: 'd';
+	color: #609060;
+}
+input {
+	display: block;
+	width: 100%;
+	border: 0 solid #7c91a7;
+	border-width: 1px 1px 1px 0.38197em;
+	background-color: white;
+	color: #524e47;
+	font-family: inherit;
+	font-size: inherit;
+	padding: 0.38197em 0.61803em;
+	margin-bottom: 1em;
+	border-radius: 0;
+	-webkit-appearance: none;
+}
+label:nth-child(2) input {
+	border-color: #a77ca7;
+}
+label:nth-child(3) input {
+	border-color: #a7927c;
+}
+label:nth-child(4) input {
+	border-color: #7ca77c;
+}
+input:focus {
+	-moz-box-shadow: 0 0 0 2px #607890;
+	-webkit-box-shadow: 0 0 0 2px #607890;
+	box-shadow: 0 0 0 2px #607890;
+}
+input.submit {
+	position: absolute;
+	visibility: hidden;
+	z-index: -1;
+	width: 0;
+}
+#formRatios input {
+	border-left-width: 2.05817em;
+}
+.code-settings {
+	margin-bottom: 1.61803em;
+}
+#ms-settings {
+	white-space: pre-wrap;
+	color: #907860;
+	background: #e0dad1;
+	-moz-appearance: none;
+	display: block;
+	resize: none;
+	padding: 0.61803em;
+	margin: 1.61803em 0 0;
+	border: none;
+	width: 100%;
+	font-family: "Consolas",monospace;
+}
+a.code-install {
+	background: #566b81;
+	color: white;
+	padding: 0.23607em 0.38197em;
+	display: block;
+	font-size: 0.82491em;
+	text-align: right;
+}
+a.code-install:hover {
+	background: #4c5e71;
+	text-decoration: none;
+}
+.ratios-select-open {
+	position: absolute;
+	width: 2.05817em;
+	height: 2.09017em;
+	-moz-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	-webkit-transform: translateY(-100%);
+	transform: translateY(-100%);
+	margin-top: -1em;
+	color: #eff1f3;
+	cursor: pointer;
+}
+.ratios-select-svg {
+	width: 0.61803em;
+	height: 0.61803em;
+	margin: .7em 0 0 .7em;
+}
+.ratios-select {
+	position: absolute;
+	background: #566b81;
+	color: white;
+	width: 100%;
+	margin-top: -1em;
+	margin-bottom: 1.61803em;
+	cursor: pointer;
+	z-index: 2;
+}
+.ratios-select a {
+	display: block;
+	color: inherit;
+	padding: 0.61803em;
+	border-top: 1px solid #607890;
+}
+.ratios-select a:hover {
+	background: #4c5e71;
+	text-decoration: none;
+}
+.howto {
+	font-size: 1em;
+	padding-bottom: 0.61803em;
+	border-bottom: 1px rgba(0,0,0,0.1) solid;
+}
+.helptext {
+	display: none;
+	font-size: 0.82491em;
+}
+body.help .helptext {
+	display: block;
+}
+.credits {
+	display: block;
+	margin-top: 2.61803em;
+	border-top: 1px rgba(0,0,0,0.1) solid;
+}
+.output {
+	left: 16em;
+	right: 1em;
+	overflow-x: hidden;
+	padding-top: 2.61803em;
+}
+.output li {
+	padding: .25em .5em;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+}
+.output li:first-child {
+	padding-left: 0;
+}
+.output .output-function {
+	width: 4em;
+	font-weight: bold;
+}
+.mode-web .output .output-function {
+	display: none;
+}
+.output .info {
+	font-family: "Consolas",monospace;
+	white-space: nowrap;
+	border-top: 1px solid #ebe6e0;
+	color: #907860;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+	width: 100%;
+}
+.output .info span {
+	min-width: 6em;
+	margin-right: 1em;
+}
+.output .text {
+	font-family: "Cambria",serif;
+	color: #524e47;
+	white-space: nowrap;
+	position: relative;
+	line-height: 1;
+	margin: 0 -16px 0.38197rem;
+	padding: 0 0 0.1147em 16px;
+	pointer-events: none;
+}
+.output .text:before {
+	content: "";
+	position: absolute;
+	height: 100%;
+	right: 100%;
+	width: 10px;
+	height: 1em;
+	margin-right: -10px;
+	background: #7c91a7;
+}
+.output .text:after {
+	content: 'a';
+	position: absolute;
+	top: -17px;
+	left: 1px;
+	font-size: 16px;
+	font-family: "Segoe UI",sans-serif;
+	color: #6c859d;
+}
+.output .s1:before {
+	background: #a77ca7;
+}
+.output .s1:after {
+	content: 'b';
+	color: #9d6c9d;
+}
+.output .s2:before {
+	background: #a7927c;
+}
+.output .s2:after {
+	content: 'c';
+	color: #9d856c;
+}
+.output .s3:before {
+	background: #7ca77c;
+}
+.output .s3:after {
+	content: 'd';
+	color: #6c9d6c;
+}
+@media (max-width: 34em) {
+	.output {
+		left: 0;
+		-moz-transform: translateX(100%);
+		-ms-transform: translateX(100%);
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+	}
+	.panel-output .output,.panel-about .output {
+		-moz-transform: translateX(2%);
+		-ms-transform: translateX(2%);
+		-webkit-transform: translateX(2%);
+		transform: translateX(2%);
+	}
+}
+.output.table .text {
+	display: none;
+}
+.output.table ul:first-child {
+	border-top: none;
+}
+@media (max-width: 42em) {
+	.at16 {
+		display: none;
+	}
+}
+#text_m0:before {
+	background: #524e47;
+}
+.table .info.m0 {
+	background: #f8f6f4;
+}
+.output-mode {
+	position: fixed;
+	z-index: 1;
+	left: 16.61803em;
+	background: #607890;
+	display: table;
+	border-top: none;
+	-moz-box-shadow: 0 0.23607em 0 0 rgba(0,0,0,0.05),0 1px 0 0 rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 0.23607em 0 0 rgba(0,0,0,0.05),0 1px 0 0 rgba(0,0,0,0.1);
+	box-shadow: 0 0.23607em 0 0 rgba(0,0,0,0.05),0 1px 0 0 rgba(0,0,0,0.1);
+	overflow: hidden;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.output-mode a {
+	font-size: 1em;
+	font-weight: 300;
+	padding: 0.61803em 1em 0.61803em;
+	color: white;
+	height: 1em;
+	display: table-cell;
+	border-left: 1px solid #afbbc7;
+}
+.output-mode a:first-child {
+	border: none;
+}
+.output-mode a:hover,.output-mode a:focus {
+	text-decoration: none;
+	background: #566b81;
+}
+@media (max-width: 34em) {
+	.output-mode {
+		-moz-transform: translateY(-100%);
+		-ms-transform: translateY(-100%);
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+		left: 1.23607em;
+		opacity: 0;
+	}
+	.panel-output .output-mode {
+		-moz-transform: translateY(0);
+		-ms-transform: translateY(0);
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+	.panel-output.ios-webapp .output-mode {
+		top: 20px;
+	}
+}
+.about {
+	z-index: 1;
+	padding: 1em 2em 4em 1em;
+	width: 30em;
+	right: -29em;
+	line-height: 1.61803;
+}
+.panel-about .about {
+	-moz-transform: translateX(-29em);
+	-ms-transform: translateX(-29em);
+	-webkit-transform: translateX(-29em);
+	transform: translateX(-29em);
+}
+@media (max-width: 34em) {
+	.about {
+		left: 2%;
+		width: 96%;
+		-moz-transform: translateX(100%);
+		-ms-transform: translateX(100%);
+		-webkit-transform: translateX(100%);
+		transform: translateX(100%);
+	}
+	.panel-about .about {
+		-moz-transform: translateX(2%);
+		-ms-transform: translateX(2%);
+		-webkit-transform: translateX(2%);
+		transform: translateX(2%);
+	}
+}
+.about h2 {
+	color: #524e47;
+	font-weight: 400;
+	font-size: 1.61803em;
+	line-height: 1;
+	margin-top: 0.61803em;
+}
+.about h2:first-child {
+	margin-top: 0;
+}
+.about ol,.about ul {
+	padding-left: 1.61803em;
+	list-style-type: square;
+}
+.about ol {
+	list-style-type: decimal;
+}
+.about li {
+	list-style-type: inherit;
+	font-size: 0.85317em;
+	margin-bottom: 0.61803em;
+}
+.about code {
+	background-color: #f5f3f0;
+	border: 1px solid #ebe6e0;
+	padding: 0.1459em 0.38197em;
+	color: #607890;
+}
+.about a {
+	text-decoration: underline;
+}
+.about-close {
+	display: none;
+	background: #607890;
+	border-radius: 50%;
+	padding: 0;
+	border: 1px solid white;
+	position: fixed;
+	font-size: .75em;
+	top: 1em;
+	right: 0.33333em;
+	z-index: 1;
+	-moz-transition: all 0.25s;
+	-o-transition: all 0.25s;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+.panel-about .about-close {
+	-moz-transform: rotateZ(225deg);
+	-ms-transform: rotateZ(225deg);
+	-webkit-transform: rotateZ(225deg);
+	transform: rotateZ(225deg);
+}
+.about-close:hover,.about-close:focus {
+	background: #7c91a7;
+}
+@media (min-width: 34em) {
+	.about-close {
+		display: block;
+	}
+}
+.pager {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	height: 2.61803em;
+	width: 100%;
+	background: #607890;
+	-moz-box-shadow: 0 -0.23607em 0 0 rgba(0,0,0,0.05),0 -1px 0 0 rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 -0.23607em 0 0 rgba(0,0,0,0.05),0 -1px 0 0 rgba(0,0,0,0.1);
+	box-shadow: 0 -0.23607em 0 0 rgba(0,0,0,0.05),0 -1px 0 0 rgba(0,0,0,0.1);
+}
+.pager a {
+	display: table-cell;
+	position: relative;
+	vertical-align: middle;
+	text-align: center;
+	color: white;
+	border-left: 1px solid #afbbc7;
+	width: 33.34%;
+}
+.pager a:hover {
+	text-decoration: none;
+}
+.pager a:first-child {
+	border: none;
+}
+@media (max-width: 34em) {
+	.pager {
+		display: table;
+	}
+}
+.pager:after {
+	content: '•';
+	position: absolute;
+	text-align: center;
+	width: 33.334%;
+	left: 0;
+	bottom: 0.1459em;
+	font-size: .67em;
+	line-height: 1;
+	color: white;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.panel-output .pager:after {
+	-moz-transform: translateX(100%);
+	-ms-transform: translateX(100%);
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+}
+.panel-about .pager:after {
+	-moz-transform: translateX(200%);
+	-ms-transform: translateX(200%);
+	-webkit-transform: translateX(200%);
+	transform: translateX(200%);
+}
+.advertisement {
+	background: #44413b;
+	margin: 1.61803em 0;
+	padding: 0.05573em 0.61803em 0.38197em;
+}
+.advertisement p {
+	margin: 0.61803em 0;
+	font-size: 0.82491em;
+}
+.ios-webapp {
+	background-color: #607890;
+}
+		</style>
+	</head>
+	<body class="panel-calc mode-web">
+		<svg height=0 width=0 style="position:absolute;margin-left: -100%;">
+			<g id=add class=svg-pm>
+				<rect fill="#fff" class=svg-pm-bar x=2 y=7 width=11 height=1 />
+				<rect fill="#fff" class=svg-pm-bar x=7 y=2 width=1 height=11 />
+			</g>
+		</svg>
+		<section class="form panel" data-panel=form id=formPanel>
+			<h1 class=logo>Modular Scale</h1>
+			<p class=howto>
+				Not sure how this calculator works? <a href="javascript:helpT();">Here are some tips</a>.
+			</p>
+			<p class=helptext>
+				This calculator makes a set of numbers called a modular scale, which you use like a ruler. <a href="javascript:aboutA('how-do-i-use-this');">More&nbsp;&rarr;</a>
+			</p>
+			<form id=form action="javascript:msPanel('output')">
+				<div class=bases>
+					<h6 class=label>Bases</h6>
+					<div id=formBases>
+						<label>
+							<input class=base value=1em step=1 onkeyup="changeBase(this,event.keyCode)">
+						</label>
+					</div>
+					<a class="button-pm add" href="javascript:addBase()">
+					<svg class=svg-pm viewBox="0 0 15 15" aria-labelledby=title>
+						<title id=title>Add base</title><use xlink:href="#add"></use>
+					</svg> </a><a class="button-pm remove" href="javascript:removeBase()">
+					<svg class=svg-pm viewBox="0 0 15 15" aria-labelledby=title>
+						<title id=title>Remove base</title><use xlink:href="#add"></use>
+					</svg> </a>
+					<p class=helptext>
+						<em>Bases</em> are a scale&#8217;s root numbers. For example, the&#160;size at which your body text typeface looks best. <a href="javascript:aboutA('whats-a-good-base');">More&nbsp;&rarr;</a>
+					</p>
+				</div>
+				<div class=ratios>
+					<h6 class=label>Ratios</h6>
+					<div id=formRatios>
+						<label>
+							<input type=number class=ratio min="1.001" value="1.5" step="0.001" onkeyup="changeRatio()">
+							<div onclick="ratioSelectOpen(this)" class=ratios-select-open>
+								<svg viewBox="0 0 10 10" class=ratios-select-svg aria-labelledby=title>
+									<title id=title>Select a ratio</title>
+									<path d="m0 3 l10 0 -5 5 z"/>
+								</svg>
+							</div><div class=ratios-select></div> </label>
+					</div>
+					<a class="button-pm add" href="javascript:addRatio()">
+					<svg class=svg-pm viewBox="0 0 15 15" aria-labelledby=title>
+						<title id=title>Add ratio</title><use xlink:href="#add"></use>
+					</svg> </a><a class="button-pm remove" href="javascript:removeRatio()">
+					<svg class=svg-pm viewBox="0 0 15 15" aria-labelledby=title>
+						<title id=title>Remove ratio</title><use xlink:href="#add"></use>
+					</svg> </a>
+					<p class=helptext>
+						<em>Ratios</em> are multiplied by the&#160;base to produce a scale of numbers that is proportionally related. <a href="javascript:aboutA('whats-a-good-ratio');">More&nbsp;&rarr;</a>
+					</p>
+				</div>
+				<input class=submit type=submit />
+			</form>
+			<div class=error id=error></div>
+			<div class="calculator-selection tabs">
+				<a href="javascript:codeMode('web')" class="calculator-lang tab web">Web</a><a href="javascript:codeMode('sass')" class="calculator-lang tab sass">Sass</a><a href="javascript:codeMode('js')" class="calculator-lang tab js">JS</a><div id=codeSettings class=code-settings></div>
+				<p class=helptext>
+					Get your scale as a plugin, or reference calculated results right here on the&#160;web. <a href="javascript:aboutA('should-i-use-the-sass--js-plugins');">More&nbsp;&rarr;</a>
+				</p>
+			</div>
+			<small class=credits>
+				<p>
+					This site is built &amp; maintained by <a href="//scottkellum.com/">Scott Kellum</a> and <a href="https://twitter.com/nicewebtype">Tim Brown</a>. Copyright © 2010&#8212;2015 <a href="//tbrown.org/">Tim Brown</a>.
+				</p> </small>
+		</section>
+		<div class=output-mode>
+			<a href="javascript:outputM('table')" class=mode-table>Table</a><a href="javascript:outputM('text')" class=mode-text>Text</a>
+		</div>
+		<section class="output panel text" data-panel=output id=output>
+			<ul class="info m16">
+				<li class=output-function>
+					ms(16)
+				</li>
+				<li id=m16value>
+					<span>656.841em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m16 style="font-size: 10509.4533691406px;">
+				The quick brown fox jumps over the&#160;lazy dog
+			</div>
+			<ul class="info m15">
+				<li class=output-function>
+					ms(15)
+				</li>
+				<li id=m15value>
+					<span>437.894em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m15 style="font-size: 7006.30224609375px;">
+				The quick brown fox jumps over the&#160;lazy dog
+			</div>
+			<ul class="info m14">
+				<li class=output-function>
+					ms(14)
+				</li>
+				<li id=m14value>
+					<span>291.929em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m14 style="font-size: 4670.8681640625px;">
+				The quick brown fox jumps over the&#160;lazy dog
+			</div>
+			<ul class="info m13">
+				<li class=output-function>
+					ms(13)
+				</li>
+				<li id=m13value>
+					<span>194.62em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m13 style="font-size: 3113.912109375px;">
+				The quick brown fox jumps over the&#160;lazy dog
+			</div>
+			<ul class="info m12">
+				<li class=output-function>
+					ms(12)
+				</li>
+				<li id=m12value>
+					<span>129.746em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m12 style="font-size: 2075.94140625px;">
+				The quick brown fox jumps over the&#160;lazy dog
+			</div>
+			<ul class="info m11">
+				<li class=output-function>
+					ms(11)
+				</li>
+				<li id=m11value>
+					<span>86.498em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m11 style="font-size: 1383.9609375px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m10">
+				<li class=output-function>
+					ms(10)
+				</li>
+				<li id=m10value>
+					<span>57.665em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m10 style="font-size: 922.640625px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m9">
+				<li class=output-function>
+					ms(9)
+				</li>
+				<li id=m9value>
+					<span>38.443em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m9 style="font-size: 615.09375px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m8">
+				<li class=output-function>
+					ms(8)
+				</li>
+				<li id=m8value>
+					<span>25.629em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m8 style="font-size: 410.0625px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m7">
+				<li class=output-function>
+					ms(7)
+				</li>
+				<li id=m7value>
+					<span>17.086em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m7 style="font-size: 273.375px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m6">
+				<li class=output-function>
+					ms(6)
+				</li>
+				<li id=m6value>
+					<span>11.391em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m6 style="font-size: 182.25px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m5">
+				<li class=output-function>
+					ms(5)
+				</li>
+				<li id=m5value>
+					<span>7.594em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m5 style="font-size: 121.5px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m4">
+				<li class=output-function>
+					ms(4)
+				</li>
+				<li id=m4value>
+					<span>5.063em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m4 style="font-size: 81px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m3">
+				<li class=output-function>
+					ms(3)
+				</li>
+				<li id=m3value>
+					<span>3.375em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m3 style="font-size: 54px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m2">
+				<li class=output-function>
+					ms(2)
+				</li>
+				<li id=m2value>
+					<span>2.25em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m2 style="font-size: 36px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m1">
+				<li class=output-function>
+					ms(1)
+				</li>
+				<li id=m1value>
+					<span>1.5em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m1 style="font-size: 24px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m0">
+				<li class=output-function>
+					ms(0)
+				</li>
+				<li id=m0value>
+					<span>1em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_m0 style="font-size: 16px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m-1">
+				<li class=output-function>
+					ms(-1)
+				</li>
+				<li id=mn1value>
+					<span>0.667em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_mn1 style="font-size: 10.6666666666667px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m-2">
+				<li class=output-function>
+					ms(-2)
+				</li>
+				<li id=mn2value>
+					<span>0.444em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_mn2 style="font-size: 7.11111111111111px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m-3">
+				<li class=output-function>
+					ms(-3)
+				</li>
+				<li id=mn3value>
+					<span>0.296em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_mn3 style="font-size: 4.74074074074074px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m-4">
+				<li class=output-function>
+					ms(-4)
+				</li>
+				<li id=mn4value>
+					<span>0.198em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_mn4 style="font-size: 3.16049382716049px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m-5">
+				<li class=output-function>
+					ms(-5)
+				</li>
+				<li id=mn5value>
+					<span>0.132em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_mn5 style="font-size: 2.10699588477366px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+			<ul class="info m-6">
+				<li class=output-function>
+					ms(-6)
+				</li>
+				<li id=mn6value>
+					<span>0.088em</span>
+				</li>
+			</ul>
+			<div class="s0 text" id=text_mn6 style="font-size: 1.40466392318244px;">
+				The quick brown fox jumps over the lazy dog
+			</div>
+		</section>
+		<article class="about panel" data-panel=about id=about>
+			<h2 id=how-do-i-use-this>How do I use this?</h2>
+			<p>
+				Use a scale like you would use a ruler. Many people set heading type sizes with numbers from a scale, but that's just one possibility. You can use a scale to measure or set the size of any element or negative space in&#160;a composition — including grids, and the overall dimensions of the composition itself.
+			</p>
+			<ul>
+				<li>
+					Introduced at <a href="//vimeo.com/17079380">Build 2010</a> (video, Tim Brown)
+				</li>
+				<li>
+					Read <a href="//www.alistapart.com/articles/more-meaningful-typography/">More Meaningful Typography</a> (Tim Brown)
+				</li>
+			</ul>
+			<h2 id=whats-a-good-base>What’s a good base?</h2>
+			<p>
+				Body text type size is a good place to start. If you want to get more nerdy, dig into the font metrics of your typeface (x-height, for example) and use that data as a base. If your layout has important fixed-width images or ads, you could use those widths.
+			</p>
+			<h2 id=whats-a-good-ratio>What’s a good ratio?</h2>
+			<p>
+				Ratios can be chosen carefully and meaningfully, drawing inspiration from the history and character of a typeface or other elements in a project. Billy Whited gave <a href="//blog.8thlight.com/billy-whited/2011/10/28/r-a-ela-tional-design.html#tips">several tips for choosing a scale</a>, and Nathan Ford wrote about choosing ratios as part of <a href="//blog.typekit.com/2014/02/26/deriving-layout-from-your-typeface/">deriving layout from your typeface</a>. Owen Gregory thinks we might look to <a href="//24ways.org/2011/composing-the-new-canon">musical scales for better harmony</a>. Or, choosing a ratio can be more simple — especially with help from plugins. If the scale-based sizes in your project's CSS are essentially variables, you can try different ratios to see how they look.
+			</p>
+			<h2 id=can-i-use-more-than-one-ratio>Can I use more than one ratio?</h2>
+			<p>
+				Sure! One base with one ratio is a modular scale. Any more than that is a <em>multi-stranded</em> modular scale. (Try entering a second base or ratio, and you'll see the a/b labeling in this calculator's output pane.) Multi-stranded modular scales are powerful because they add more numbers to your scale, and that flexibility means it's more likely that a number from your scale will work in your project. But too many strands can dilute a scale.
+			</p>
+			<h2 id=why-cant-i-use-multiple-bases-and-ratios>Why can't I use multiple bases <em>and</em> ratios?</h2>
+			<p>
+				Because that would <em>really</em> dilute the scale. If multiple ratios share the same base, they are united by that base. Even if two numbers in the scale's output are from different strands, they began at the same place. Similarly, if multiple bases share the same ratio, that's what ties the scale together. But if there are two bases <em>and</em> two ratios, it's possible that numbers from the scale's output could be completely unrelated to one another.
+			</p>
+			<h2 id=should-i-use-the-sass--js-plugins>Should I use the Sass&#160;/ JS plugins?</h2>
+			<p>
+				They are amazing, but they do require setup. This web calculator is a good way to reference scales and visually create them, but having a modular scale calculator <em>right in your project</em> allows you to change your scales on the fly. It also saves you the effort of having to remember values.
+			</p>
+			<p>
+				Both plugins work the same way:
+			</p>
+			<ol>
+				<li>
+					First, you need to install them in your project. There are several installation options. Head over to the pages to find out more: <a href="https://github.com/modularscale/modularscale-sass">Sass</a> and <a href="https://github.com/modularscale/modularscale-js">JavaScript</a>
+				</li>
+				<li>
+					Next, calculate a scale here at modularscale.com
+				</li>
+				<li>
+					Finally, near the bottom of the calculator, use the Sass or JS tab to copy configuration code into your project
+				</li>
+			</ol>
+			<p>
+				When you have things all set up, use the function <code>
+					ms(0)</code>
+				in your Sass or JS. Change the number in the function, and you get different values from your scale. You can also refer back to function values in the output pane here at modularscale.com — when you are using the plugins, you can just drop these functions into your project to get the associated value.
+			</p>
+			<h2 id=about-this-website>About this website</h2>
+			<p>
+				First introduced at <a href="//vimeo.com/17079380">Build 2010</a> by Tim Brown, this site was built as a tool to help web designers size their type in a more meaningful way. The site re-launched at <a href="//aneventapart.com/event/atlanta-2015">AEA Atlanta 2015</a> through a collaboration between Tim Brown and Scott Kellum. The re-launch was an effort to consolidate, improve, and promote tools and best practices around using modular scales.
+			</p>
+			<p>
+				This site is designed using <a href="https://typekit.com/fonts/jaf-bernino-sans">JAF Bernini Sans</a>, designed by <a href="//justanotherfoundry.com/">Tim Ahrens &amp; Shoko Mugikura</a>, as well as <a href="https://typekit.com/fonts/freight-text-pro">Freight Text</a>, designed by <a href="//dardenstudio.com/">Joshua Darden</a>, both served from <a href="https://typekit.com/">Typekit</a>. It is built on <a href="https://middlemanapp.com/">Middleman</a>, <a href="//sass-lang.com/">Sass</a>, and <a href="//compass-style.org/">Compass</a> using the modular scale plugins and <a href="https://github.com/at-import/color-schemer">color-schemer</a>. You can view the <a href="https://github.com/modularscale/modularscale">full source on GitHub</a>. Hosted on <a href="https://www.bitballoon.com/">BitBalloon</a>.
+			</p>
+		</article>
+		<a href="javascript:aboutT();" class=about-close>
+		<svg class=svg-pm viewBox="0 0 15 15" aria-labelledby=title>
+			<title id=title>Close panel</title><use xlink:href="#add"></use>
+		</svg> </a>
+		<nav class=pager id=pager>
+			<a href="javascript:msPanel('calc')" id=nav-calc>Calculator</a><a href="javascript:msPanel('output')" id=nav-output>Output</a><a href="javascript:msPanel('about')" id=nav-about>About</a>
+		</nav>
+		<script>
+			function ms(e,t,a){"string"==typeof e&&(e=1),void 0==e&&(e=msValue),void 0==t&&(t=msBases),void 0==a&&(a=msRatios),0>=t&&(t=1),"number"!=typeof Math.abs(t[0])&&(t=1);for(var t=(""+t).split(","),a=(""+a).split(","),n=[],s=null,o=0;o<a.length;o++)for(var i=0;i<t.length;i++)if(s=i+o,e>=0){for(var l=0;Math.pow(a[o],l)*t[i]>=t[0];)n.push([Math.pow(a[o],l)*t[i],s]),l--;for(var l=0;Math.pow(a[o],l)*t[i]<=Math.pow(a[o],e+1)*t[i];)n.push([Math.pow(a[o],l)*t[i],s]),l++}else{for(var l=0;Math.pow(a[o],l)*t[i]<=t[0];)n.push([Math.pow(a[o],l)*t[i],s]),l++;for(var l=0;Math.pow(a[o],l)*t[i]>=Math.pow(a[o],e-1)*t[i];)Math.pow(a[o],l)*t[i]<=t[0]&&n.push([Math.pow(a[o],l)*t[i],s]),l--}return n=msUnique(n),0>e&&(n=n.reverse()),n[Math.abs(e)]}function changeBase(e,t){msBase=[],msUnit=null;var a=!1;if(null!=e){var n=e.value.match(/^(\d+(?:\.\d+)?)(.*)$/);38==t?e.value=n[1]-0+1+n[2]:40==t&&n[1]>1&&(e.value=n[1]-1+n[2])}for(var s=document.getElementsByClassName("base"),o=0;o<s.length;o++)v=("0"+s[o].value).match(/^(\d+(?:\.\d+)?)(.*)$/),v[1]>0?msBase.push(v[1].slice(1)):a="Your base must be greater than 0",null==msUnit&&(msUnit=v[2]);0==a?(msPage(msBase,msUnit,msRatio),error(a)):error(a),codeMode(mode)}function changeRatio(){msRatio=[];for(var e=!1,t=document.getElementsByClassName("ratio"),a=0;a<t.length;a++)v=parseFloat(t[a].value),"number"==typeof v?msRatio.push(v):e=!0,v<=1&&(e="Your ratio needs to be greater than 1");0==e?(msPage(msBase,msUnit,msRatio),error(e)):error(e),codeMode(mode)}function msPanel(e){document.body.className="panel-"+e+" mode-"+mode+" "+help,"output"==e&&document.activeElement.blur(),currentPanel=e}function aboutT(){"about"==currentPanel?(msPanel("calc"),mixpanel.track("About toggle close")):(msPanel("about"),mixpanel.track("About toggle open"))}function handleTouchStart(e){xDown=e.touches[0].clientX,yDown=e.touches[0].clientY}function handleTouchMove(e){if(xDown&&yDown){var t=e.touches[0].clientX,a=e.touches[0].clientY,n=xDown-t,s=yDown-a;if(document.documentElement.clientWidth>545)Math.abs(n)>Math.abs(s)&&msPanel(n>0?"about":"calc");else if(Math.abs(n)>Math.abs(s)){var o=panelNames.indexOf(currentPanel);n>0&&2>o&&msPanel(panelNames[o+1]),0>=n&&o>0&&msPanel(panelNames[o-1])}xDown=null,yDown=null}}function outputM(e){outputMode=e,document.getElementById("output").className="output panel "+e,msPage(msBase,msUnit,msRatio)}function addBase(e){var t=document.getElementById("formBases"),a=document.createElement("label"),n=document.getElementsByClassName("base")[0].value;e&&(n=e),a.innerHTML='<input type="text" class="base" value="'+n+'" onkeyup="changeBase(this,event.keyCode)">',0==ratioCount&&multiLimit>ratioCount&&(t.appendChild(a),baseCount++),1==baseCount&&(t.classList.add("multi"),document.getElementById("formRatios").classList.add("no-add")),baseCount==multiLimit&&t.classList.add("no-add")}function removeBase(){baseCount>0&&(document.getElementById("formBases").lastChild.remove(),baseCount--),0==baseCount&&(formBases.classList.remove("multi"),document.getElementById("formRatios").classList.remove("no-add")),multiLimit>baseCount&&formBases.classList.remove("no-add"),changeBase()}function addRatio(e){var t=document.getElementById("formRatios"),a=document.createElement("label"),n=document.getElementsByClassName("ratio")[0].value;e&&(n=e),a.innerHTML='<input type="number" class="ratio" min="1.001" value="'+n+'" step="0.001" onkeyup="changeRatio()"><div onclick="ratioSelectOpen(this)" class="ratios-select-open"><svg viewBox="0 0 10 10" class="ratios-select-svg" aria-labelledby="title"><title id="title">Select a ratio</title><path d="m0 3 l10 0 -5 5 z"/></svg></div><div class="ratios-select"></div>',0==baseCount&&multiLimit>ratioCount&&(t.appendChild(a),ratioCount++),1==ratioCount&&(t.classList.add("multi"),document.getElementById("formBases").classList.add("no-add")),ratioCount==multiLimit&&t.classList.add("no-add")}function removeRatio(){ratioCount>0&&(document.getElementById("formRatios").lastChild.remove(),ratioCount--),0==ratioCount&&(formRatios.classList.remove("multi"),document.getElementById("formBases").classList.remove("no-add")),multiLimit>ratioCount&&formRatios.classList.remove("no-add"),changeRatio()}function closeRSfn(e){e.classList.remove("open"),e.nextSibling.innerHTML="",document.getElementById("formRatios").classList.remove("open")}function closeRS(){for(var e=document.getElementById("formRatios").getElementsByClassName("open"),t=0;t<e.length;t++)closeRSfn(e[t])}function ratioSelectOpen(e){e.classList.contains("open")?(e.classList.remove("open"),e.nextSibling.innerHTML="",document.getElementById("formRatios").classList.remove("open")):(closeRS(),e.classList.add("open"),e.nextSibling.innerHTML=ratioDropHTML,document.getElementById("formRatios").classList.add("open"))}function rS(e){var t=document.getElementById("formRatios").getElementsByClassName("open")[0].previousSibling;t.value=e,closeRS(),changeRatio(),msPage(msBase,msUnit,msRatio)}function baseList(){var e=[];for(i=0;i<msBase.length;++i)e.push(msBase[i]+msUnit);return e}function codeMode(e){var t=document.getElementById("codeSettings");"web"==e?t.innerHTML="":"sass"==e?t.innerHTML='<textarea id="ms-settings" onClick="this.select();">$ms-base: '+baseList()+";\n$ms-ratio: "+msRatio+';</textarea><a href="https://github.com/modularscale/modularscale-sass" target="_blank" class="code-install">Install the Sass plugin</a>':"js"==e&&(t.innerHTML='<textarea id="ms-settings" onClick="this.select();">msBases = ['+msBase+"];\nmsRatios = ["+msRatio+'];</textarea><a href="https://github.com/modularscale/modularscale-js" target="_blank" class="code-install">Install the JS plugin</a>'),mode=e,document.body.className="panel-"+panel+" mode-"+mode+" "+help,newURL()}function error(e){var t=document.getElementById("error");t.innerHTML=e?e:""}function newURL(){window.history.replaceState("","Modularscale","?"+msBase+"&"+msUnit+"&"+msRatio+"&"+mode+"&"+outputMode)}function queryURL(){var e=window.location.search;if(e.search("utm_")>0)return null;if(e.search("&")>0&&(e=e.split("?")[1].split("&"),e.length=5)){if(msBase=e[0].split(","),msUnit=e[1],msRatio=e[2].split(","),mode=e[3],outputMode=e[4],document.getElementsByClassName("base")[0].value=msBase[0]+msUnit,document.getElementsByClassName("ratio")[0].value=msRatio[0],msBase.length>1)for(var t=1;t<msBase.length;t++)addBase(msBase[t]+msUnit);if(msRatio.length>1)for(var t=1;t<msRatio.length;t++)addRatio(msRatio[t]);msPage(msBase,msUnit,msRatio),codeMode(mode),outputM(outputMode)}}function helpT(){"help"==help?(help="help-off",document.body.className="panel-"+panel+" mode-"+mode+" "+help,mixpanel.track("Help toggle",{Toggled:"off"})):(document.cookie="helpT",help="help",document.body.className="panel-"+panel+" mode-"+mode+" "+help,mixpanel.track("Help toggle",{Toggled:"on"}))}function aboutA(e){msPanel("about");var t=document.getElementById(e).offsetTop;document.getElementById("about").scrollTop=t-12,lastHelp==e&&mixpanel.track("help toggle attempt"),lastHelp=e,mixpanel.track("Help",{Link:e})}function stepUnits(e,t,a,n){var s=Math.round(1e3*ms(e,t,n)[0])/1e3,o=s+a;return(1!=t[0]||"em"!=a)&&(o=o+"</span><span>"+Math.round(s/t[0]*1e3)/1e3+"em"),"px"===a&&(o=o+'</span><span class="at16">'+Math.round(s/16*1e3)/1e3+'<a href="http://nicewebtype.com/notes/2012/07/19/leave-default-font-size-alone-and-embrace-the-em/" title="What is ems @ 16?">em @ 16</a>'),"<span>"+o+"</span>"}function msPage(e,t,a){var n=16,s=-6;if(rMsUnit=t,rMsBase=e,"em"==t||"rem"==t){rMsUnit="px",rMsBase=[];for(var o=0;o<e.length;o++)rMsBase.push(16*e[o])}for(;n>=s;){var i=ms(n,rMsBase,a);n>=0?(document.getElementById("m"+n+"value").innerHTML=stepUnits(n,e,t,a),document.getElementById("text_m"+n).style.fontSize=i[0]+rMsUnit,document.getElementById("text_m"+n).setAttribute("class","s"+i[1]+" text")):(document.getElementById("mn"+Math.abs(n)+"value").innerHTML=stepUnits(n,e,t,a),document.getElementById("text_mn"+Math.abs(n)).style.fontSize=i[0]+rMsUnit,document.getElementById("text_mn"+Math.abs(n)).setAttribute("class","s"+i[1]+" text")),n--}document.getElementById("text_m0").scrollIntoView(!1),newURL(),mixpanel.track("scale",{Units:t,Bases:e.length,Ratios:a.length,"Base values":e,"Ratio values":a})}!function(e){var t,a={kitId:"vyb7oyo",scriptTimeout:3e3},n=e.documentElement,s=setTimeout(function(){n.className=n.className.replace(/\bwf-loading\b/g,"")+" wf-inactive"},a.scriptTimeout),o=e.createElement("script"),i=!1,l=e.getElementsByTagName("script")[0];n.className+=" wf-loading",o.src="//use.typekit.net/"+a.kitId+".js",o.async=!0,o.onload=o.onreadystatechange=function(){if(t=this.readyState,!(i||t&&"complete"!=t&&"loaded"!=t)){i=!0,clearTimeout(s);try{Typekit.load(a)}catch(e){}}},l.parentNode.insertBefore(o,l)}(document),function(e,t){if(!t.__SV){var a,n,s,o;window.mixpanel=t,t._i=[],t.init=function(e,a,n){function i(e,t){var a=t.split(".");2==a.length&&(e=e[a[0]],t=a[1]),e[t]=function(){e.push([t].concat(Array.prototype.slice.call(arguments,0)))}}var l=t;for("undefined"!=typeof n?l=t[n]=[]:n="mixpanel",l.people=l.people||[],l.toString=function(e){var t="mixpanel";return"mixpanel"!==n&&(t+="."+n),e||(t+=" (stub)"),t},l.people.toString=function(){return l.toString(1)+".people (stub)"},s="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" "),o=0;o<s.length;o++)i(l,s[o]);t._i.push([e,a,n])},t.__SV=1.2,a=e.createElement("script"),a.type="text/javascript",a.async=!0,a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js",n=e.getElementsByTagName("script")[0],n.parentNode.insertBefore(a,n)}}(document,window.mixpanel||[]),mixpanel.init("79fb5390230d7ab96f67b8a0e0878e78"),mixpanel.track("Visit");for(var msValue=0,msBases=1,msRatios=(1+Math.sqrt(5))/2,msUnique=function(e){e=e.sort(function(e,t){var a=e[0],n=t[0];return a-n}),newArr=[];for(var t=null,a=0;a<e.length;a++){var n=e[a][0];n!=t&&newArr.push(e[a]),t=n}return newArr},panelNames=["calc","output","about"],currentPanel="calc",panels=document.getElementsByClassName("panel"),i=0;i<panels.length;i++)panels[i].onclick=function(){msPanel(this.dataset.panel)};document.addEventListener("touchstart",handleTouchStart,!1),document.addEventListener("touchmove",handleTouchMove,!1);for(var xDown=null,yDown=null,baseCount=0,ratioCount=0,ratios=document.getElementsByClassName("panel"),i=0;i<panels.length;i++)panels[i].onclick=function(){msPanel(this.dataset.panel)};for(var ratioDropHTML='<a href="javascript:rS(1.067)">15:16 \u2013 minor second</a><a href="javascript:rS(1.125)">8:9 \u2013 major second</a><a href="javascript:rS(1.2)">5:6 \u2013 minor third</a><a href="javascript:rS(1.25)">4:5 \u2013 major third</a><a href="javascript:rS(1.333)">3:4 \u2013 perfect fourth</a><a href="javascript:rS(1.414)">1:\u221a2 \u2013 aug. fourth / dim. fifth</a><a href="javascript:rS(1.5)">2:3 \u2013 perfect fifth</a><a href="javascript:rS(1.6)">5:8 \u2013 minor sixth</a><a href="javascript:rS(1.618)">1:1.618 \u2013 golden section</a><a href="javascript:rS(1.667)">3:5 \u2013 major sixth</a><a href="javascript:rS(1.778)">9:16 \u2013 minor seventh</a><a href="javascript:rS(1.875)">8:15 \u2013 major seventh</a><a href="javascript:rS(2)">1:2 \u2013 octave</a><a href="javascript:rS(2.5)">2:5 \u2013 major tenth</a><a href="javascript:rS(2.667)">3:8 \u2013 major eleventh</a><a href="javascript:rS(3)">1:3 \u2013 major twelfth</a><a href="javascript:rS(4)">1:4 \u2013 double octave</a>',open=document.body,i=0;i<open.length;i++)open[i].classList.remove("open");var help="help-off",lastHelp=null;"T"==document.cookie.split("help")[1]&&helpT();var mode="web",panel="form",outputMode="text",msBase=[1],msUnit="em",msRatio=[1.5],multiLimit=3;queryURL(),document.addEventListener("DOMContentLoaded",function(){document.getElementById("text_m0").scrollIntoView(!1)}),!window.navigator.standalone||(navigator.userAgent.match(/(iPad|iPhone|iPod)/g)?0:1)||document.body.classList.add("ios-webapp");
+		</script>
+	</body>
+</html>
