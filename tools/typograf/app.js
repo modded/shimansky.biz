@@ -340,7 +340,7 @@ var App = {
                 }), '*');
             }
         }.bind(this));
-        this._onprefs = function() {
+        this._onprefs = function () {
             var el = $('.set-prefs'),
                 clSelected = 'set-prefs_selected';
             if($.hasClass(el, clSelected)) {
@@ -355,7 +355,7 @@ var App = {
             this.prefs.toggle();
         }.bind(this);
         $.on('.set-prefs', 'click', this._onprefs);
-        this._onastext = function() {
+        this._onastext = function () {
             $.show('.result__text');
             $.hide('.result__html');
         };
@@ -460,9 +460,9 @@ if(!Function.prototype.bind) {
         }
         var aArgs = Array.prototype.slice.call(arguments, 1),
             fToBind = this,
-            NOP = function() {
+            NOP = function () {
             },
-            fBound = function() {
+            fBound = function () {
                 return fToBind.apply(this instanceof NOP && oThis
                         ? this
                         : oThis,

@@ -62,11 +62,11 @@ var zip_cpdext = new Array( // Extra bits for distance codes
 var zip_border = new Array(  // Order of the bit length code lengths
     16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15);
 /* objects (inflate) */
-var zip_HuftList = function() {
+var zip_HuftList = function () {
     this.next = null;
     this.list = null;
 }
-var zip_HuftNode = function() {
+var zip_HuftNode = function () {
     this.e = 0; // number of extra bits or operation
     this.b = 0; // number of bits in this code or subcode
     // union
@@ -277,7 +277,7 @@ var zip_HuftBuild = function(b,	// code lengths in bits (all assumed <= BMAX)
     } /* end of constructor */
 }
 /* routines (inflate) */
-var zip_GET_BYTE = function() {
+var zip_GET_BYTE = function () {
     if(zip_inflate_data.length == zip_inflate_pos)
 	return -1;
     return zip_inflate_data.charCodeAt(zip_inflate_pos++) & 0xff;
@@ -551,7 +551,7 @@ var zip_inflate_dynamic = function(buff, off, size) {
     // decompress until an end-of-block code
     return zip_inflate_codes(buff, off, size);
 }
-var zip_inflate_start = function() {
+var zip_inflate_start = function () {
     var i;
     if(zip_slide == null)
 	zip_slide = new Array(2 * zip_WSIZE);

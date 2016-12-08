@@ -3,9 +3,6 @@
 *.bat
 *.db
 *.eps
-*.git*
-*.hg*
-*.iml
 *.iml
 *.komodoproject
 *.phprj
@@ -29,4 +26,6 @@ xdk/
 !/.htaccess
 !/.hgignore
 !/.gitignore
+!/.bithoundrc
+!/.pgbomit
 !/.travis.yml

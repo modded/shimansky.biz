@@ -510,7 +510,7 @@ window.CodeMirror = (function() {
         var n = files.length, text = Array(n), read = 0;
         var loadFile = function(file, i) {
           var reader = new FileReader;
-          reader.onload = function() {
+          reader.onload = function () {
             text[i] = reader.result;
             if (++read == n) {
               pos = clipPos(pos);
@@ -1438,7 +1438,7 @@ window.CodeMirror = (function() {
         changes.push({from: min, to: max + 1});
       this.lines.length = 0;
     });
-    TextMarker.prototype.find = function() {
+    TextMarker.prototype.find = function () {
       var from, to;
       for (var i = 0; i < this.lines.length; ++i) {
         var line = this.lines[i];
@@ -1952,13 +1952,13 @@ window.CodeMirror = (function() {
     modeObj.name = spec.name;
     return modeObj;
   };
-  CodeMirror.listModes = function() {
+  CodeMirror.listModes = function () {
     var list = [];
     for (var m in modes)
       if (modes.propertyIsEnumerable(m)) list.push(m);
     return list;
   };
-  CodeMirror.listMIMEs = function() {
+  CodeMirror.listMIMEs = function () {
     var list = [];
     for (var m in mimeModes)
       if (mimeModes.propertyIsEnumerable(m)) list.push({mime: m, mode: mimeModes[m]});
@@ -2127,8 +2127,8 @@ window.CodeMirror = (function() {
       textarea.parentNode.insertBefore(node, textarea.nextSibling);
     }, options);
     instance.save = save;
-    instance.getTextArea = function() { return textarea; };
-    instance.toTextArea = function() {
+    instance.getTextArea = function () { return textarea; };
+    instance.toTextArea = function () {
       save();
       textarea.parentNode.removeChild(instance.getWrapperElement());
       textarea.style.display = "";
@@ -2496,7 +2496,7 @@ window.CodeMirror = (function() {
         marked.sort(function(a, b) { return a.from - b.from; });
         var pos = 0, i = 0, text = "", style, sg = 0;
         var nextChange = marked[0].from || 0, marks = [], markpos = 0;
-        var advanceMarks = function() {
+        var advanceMarks = function () {
           var m;
           while (markpos < marked.length &&
                  ((m = marked[markpos]).from == pos || m.from == null)) {
@@ -2814,7 +2814,7 @@ window.CodeMirror = (function() {
   Delayed.prototype = {set: function(ms, f) {clearTimeout(this.id); this.id = setTimeout(f, ms);}};
   var Pass = CodeMirror.Pass = {toString: function(){return "CodeMirror.Pass";}};
   // Detect drag-and-drop
-  var dragAndDrop = function() {
+  var dragAndDrop = function () {
     // There is *some* kind of drag-and-drop support in IE6-8, but I
     // couldn't get it to work yet.
     if (ie_lt9) return false;

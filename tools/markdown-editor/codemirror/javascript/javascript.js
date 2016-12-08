@@ -268,7 +268,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     cx.state.context = cx.state.context.prev;
   }
   function pushlex(type, info) {
-    var result = function() {
+    var result = function () {
       var state = cx.state, indent = state.indented;
       if (state.lexical.type == "stat") indent = state.lexical.indented;
       else for (var outer = state.lexical; outer && outer.type == ")" && outer.align; outer = outer.prev)

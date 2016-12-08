@@ -27,7 +27,7 @@ function BorderRadiusSetting(elementName, getUpdateBoxDelegate, afterUpdateDeleg
 		box.BorderRadiusSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var set;
 		var borderRadius = parseInt(dojo.byId(this.ElementName + "Text").value);
@@ -73,7 +73,7 @@ function BoxShadowSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate
 		box.BoxShadowSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var set;
 		var boxShadowOffset = parseInt(dojo.byId(this.ElementName + "OffsetText").value);
@@ -129,7 +129,7 @@ function TextShadowSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegat
 		box.TextShadowSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var set;
 		var textShadowOffset = parseInt(dojo.byId(this.ElementName + "OffsetText").value);
@@ -182,7 +182,7 @@ function TransformSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate
 		box.TransformSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var set = "";
 		var transformRotate = dojo.byId(this.ElementName + "RotateText").value;
@@ -272,7 +272,7 @@ function BorderSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) {
 		box.BorderSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var borderWidth = parseInt(dojo.byId(this.ElementName + "WidthText").value);
 		var borderColor = dojo.byId(this.ElementName + "ColorText").value;
@@ -320,7 +320,7 @@ function BackgroundSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegat
 		box.BackgroundSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var backgroundColor = dojo.byId(this.ElementName + "ColorText").value;
 		box.Element.style.backgroundColor = backgroundColor;
@@ -355,7 +355,7 @@ function OpacitySetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) 
 		box.OpacitySet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var set;
 		var opacity = dojo.byId(this.ElementName + "Text").value;
@@ -400,7 +400,7 @@ function TextSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) {
 		box.TextSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var textSize = parseInt(dojo.byId(this.ElementName + "SizeText").value);
 		var textColor = dojo.byId(this.ElementName + "ColorText").value;
@@ -459,7 +459,7 @@ function TextSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) {
 	this.SizeSlider = setupSlider(elementName + "Size", 4, 50, function() { me.Update(); });
 	this.ColorPalette = setupColorPalette(elementName + "Color", function() { me.Update(); });
 	this.FontComboBox = setupComboBox(elementName + "Font", function() { me.Update(); });
-	dojo.byId(elementName + "Alignment").onchange = function() { me.Update(); };
+	dojo.byId(elementName + "Alignment").onchange = function () { me.Update(); };
 	setupCheckBox(elementName + "Bold", function() { me.Update(); });
 	setupCheckBox(elementName + "Italic", function() { me.Update(); });
 }
@@ -472,7 +472,7 @@ function ContentSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) 
 		box.Content = dojo.byId(this.ElementName + "Text").value;
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		box.Content = dojo.byId(this.ElementName + "Text").value;
 		box.Element.firstChild.innerHTML = dojo.byId(this.ElementName + "Text").value;
@@ -507,7 +507,7 @@ function SingleNumberSetting(styleName, minValue, maxValue, unitSuffix, elementN
 		box[this.StyleName + "Set"] = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var set;
 		var value = parseInt(dojo.byId(this.ElementName + "Text").value);
@@ -647,7 +647,7 @@ function GradientBackgroundSetting(elementName, getUpdateBoxDelegate, afterUpdat
 			return "";
 	}
 	
-	this.ForceDirection = function() {
+	this.ForceDirection = function () {
 		var dir = dojo.byId(this.ElementName + "Direction");
 		if (dir.selectedIndex==0)
 			dir.selectedIndex = 2;
@@ -657,7 +657,7 @@ function GradientBackgroundSetting(elementName, getUpdateBoxDelegate, afterUpdat
 	this.FromPositionSlider = setupSlider(elementName + "FromPosition", 0, 100, function() { me.Update(); });
 	this.ToColorPalette = setupColorPalette(elementName + "ToColor", function() { me.Update(); }, function() { me.ForceDirection(); });
 	this.ToPositionSlider = setupSlider(elementName + "ToPosition", 0, 100, function() { me.Update(); });
-	dojo.byId(elementName + "Direction").onchange = function() { me.Update(); };
+	dojo.byId(elementName + "Direction").onchange = function () { me.Update(); };
 }
 function OutlineSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) {
 	this.ElementName = elementName;
@@ -671,7 +671,7 @@ function OutlineSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) 
 		box.OutlineSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var borderWidth = parseInt(dojo.byId(this.ElementName + "WidthText").value);
 		var borderColor = dojo.byId(this.ElementName + "ColorText").value;
@@ -737,7 +737,7 @@ function ColumnSetting(elementName, getUpdateBoxDelegate, afterUpdateDelegate) {
 		box.ColumnSet = "";
 	}
 	
-	this.Update = function() {
+	this.Update = function () {
 		var box = this.GetUpdateBox();
 		var columnCount = parseInt(dojo.byId(this.ElementName + "CountText").value);
 		if (columnCount>1) {

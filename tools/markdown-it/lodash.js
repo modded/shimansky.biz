@@ -5094,7 +5094,7 @@
         maxWait = 'maxWait' in options && (nativeMax(wait, options.maxWait) || 0);
         trailing = 'trailing' in options ? options.trailing : trailing;
       }
-      var delayed = function() {
+      var delayed = function () {
         var remaining = wait - (now() - stamp);
         if (remaining <= 0) {
           if (maxTimeoutId) {
@@ -5113,7 +5113,7 @@
           timeoutId = setTimeout(delayed, remaining);
         }
       };
-      var maxDelayed = function() {
+      var maxDelayed = function () {
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
@@ -5252,7 +5252,7 @@
       if (!isFunction(func)) {
         throw new TypeError;
       }
-      var memoized = function() {
+      var memoized = function () {
         var cache = memoized.cache,
             key = resolver ? resolver.apply(this, arguments) : keyPrefix + arguments[0];
         return hasOwnProperty.call(cache, key)
@@ -5587,7 +5587,7 @@
       forEach(methodNames, function(methodName) {
         var func = object[methodName] = source[methodName];
         if (isFunc) {
-          ctor.prototype[methodName] = function() {
+          ctor.prototype[methodName] = function () {
             var chainAll = this.__chain__,
                 value = this.__wrapped__,
                 args = [value];
@@ -6340,7 +6340,7 @@
     // add `Array` functions that return unwrapped values
     forEach(['join', 'pop', 'shift'], function(methodName) {
       var func = arrayRef[methodName];
-      lodash.prototype[methodName] = function() {
+      lodash.prototype[methodName] = function () {
         var chainAll = this.__chain__,
             result = func.apply(this.__wrapped__, arguments);
         return chainAll
@@ -6351,7 +6351,7 @@
     // add `Array` functions that return the existing wrapped value
     forEach(['push', 'reverse', 'sort', 'unshift'], function(methodName) {
       var func = arrayRef[methodName];
-      lodash.prototype[methodName] = function() {
+      lodash.prototype[methodName] = function () {
         func.apply(this.__wrapped__, arguments);
         return this;
       };
@@ -6359,7 +6359,7 @@
     // add `Array` functions that return new wrapped values
     forEach(['concat', 'slice', 'splice'], function(methodName) {
       var func = arrayRef[methodName];
-      lodash.prototype[methodName] = function() {
+      lodash.prototype[methodName] = function () {
         return new lodashWrapper(func.apply(this.__wrapped__, arguments), this.__chain__);
       };
     });

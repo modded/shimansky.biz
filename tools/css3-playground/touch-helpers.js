@@ -69,7 +69,7 @@ function TouchScroller(mainElement, excludedClassNames) {
 				document.addEventListener("mousemove", _documentMouseMove, false);
 			}
 			else {
-				_documentMouseUp = function() { me.OnEnd(window.event); };
+				_documentMouseUp = function () { me.OnEnd(window.event); };
 				document.attachEvent("onmouseup", _documentMouseUp);
 			}
 		}

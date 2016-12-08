@@ -168,19 +168,19 @@ window.Modernizr = (function( window, document, undefined ) {
           props = (prop + ' ' + (domPrefixes).join(ucProp + ' ') + ucProp).split(' ');
           return testDOMProps(props, prefixed, elem);
         }
-    }    tests['flexbox'] = function() {
+    }    tests['flexbox'] = function () {
       return testPropsAll('flexWrap');
-    };    tests['canvas'] = function() {
+    };    tests['canvas'] = function () {
         var elem = document.createElement('canvas');
         return !!(elem.getContext && elem.getContext('2d'));
     };
-    tests['canvastext'] = function() {
+    tests['canvastext'] = function () {
         return !!(Modernizr['canvas'] && is(document.createElement('canvas').getContext('2d').fillText, 'function'));
     };
-    tests['webgl'] = function() {
+    tests['webgl'] = function () {
         return !!window.WebGLRenderingContext;
     };
-    tests['touch'] = function() {
+    tests['touch'] = function () {
         var bool;
         if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
           bool = true;
@@ -191,68 +191,68 @@ window.Modernizr = (function( window, document, undefined ) {
         }
         return bool;
     };
-    tests['geolocation'] = function() {
+    tests['geolocation'] = function () {
         return 'geolocation' in navigator;
     };
-    tests['postmessage'] = function() {
+    tests['postmessage'] = function () {
       return !!window.postMessage;
     };
-    tests['websqldatabase'] = function() {
+    tests['websqldatabase'] = function () {
       return !!window.openDatabase;
     };
-    tests['indexedDB'] = function() {
+    tests['indexedDB'] = function () {
       return !!testPropsAll("indexedDB", window);
     };
-    tests['hashchange'] = function() {
+    tests['hashchange'] = function () {
       return isEventSupported('hashchange', window) && (document.documentMode === undefined || document.documentMode > 7);
     };
-    tests['history'] = function() {
+    tests['history'] = function () {
       return !!(window.history && history.pushState);
     };
-    tests['draganddrop'] = function() {
+    tests['draganddrop'] = function () {
         var div = document.createElement('div');
         return ('draggable' in div) || ('ondragstart' in div && 'ondrop' in div);
     };
-    tests['websockets'] = function() {
+    tests['websockets'] = function () {
         return 'WebSocket' in window || 'MozWebSocket' in window;
     };
-    tests['rgba'] = function() {
+    tests['rgba'] = function () {
         setCss('background-color:rgba(150,255,150,.5)');
         return contains(mStyle.backgroundColor, 'rgba');
     };
-    tests['hsla'] = function() {
+    tests['hsla'] = function () {
             setCss('background-color:hsla(120,40%,100%,.5)');
         return contains(mStyle.backgroundColor, 'rgba') || contains(mStyle.backgroundColor, 'hsla');
     };
-    tests['multiplebgs'] = function() {
+    tests['multiplebgs'] = function () {
                 setCss('background:url(https://),url(https://),red url(https://)');
             return (/(url\s*\(.*?){3}/).test(mStyle.background);
-    };    tests['backgroundsize'] = function() {
+    };    tests['backgroundsize'] = function () {
         return testPropsAll('backgroundSize');
     };
-    tests['borderimage'] = function() {
+    tests['borderimage'] = function () {
         return testPropsAll('borderImage');
     };
-    tests['borderradius'] = function() {
+    tests['borderradius'] = function () {
         return testPropsAll('borderRadius');
     };
-    tests['boxshadow'] = function() {
+    tests['boxshadow'] = function () {
         return testPropsAll('boxShadow');
     };
-    tests['textshadow'] = function() {
+    tests['textshadow'] = function () {
         return document.createElement('div').style.textShadow === '';
     };
-    tests['opacity'] = function() {
+    tests['opacity'] = function () {
                 setCssAll('opacity:.55');
                     return (/^0.55$/).test(mStyle.opacity);
     };
-    tests['cssanimations'] = function() {
+    tests['cssanimations'] = function () {
         return testPropsAll('animationName');
     };
-    tests['csscolumns'] = function() {
+    tests['csscolumns'] = function () {
         return testPropsAll('columnCount');
     };
-    tests['cssgradients'] = function() {
+    tests['cssgradients'] = function () {
         var str1 = 'background-image:',
             str2 = 'gradient(linear,left top,right bottom,from(#9f9),to(white));',
             str3 = 'linear-gradient(left top,#9f9, white);';
@@ -262,13 +262,13 @@ window.Modernizr = (function( window, document, undefined ) {
         );
         return contains(mStyle.backgroundImage, 'gradient');
     };
-    tests['cssreflections'] = function() {
+    tests['cssreflections'] = function () {
         return testPropsAll('boxReflect');
     };
-    tests['csstransforms'] = function() {
+    tests['csstransforms'] = function () {
         return !!testPropsAll('transform');
     };
-    tests['csstransforms3d'] = function() {
+    tests['csstransforms3d'] = function () {
         var ret = !!testPropsAll('perspective');
                         if ( ret && 'webkitPerspective' in docElement.style ) {
                       injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function( node, rule ) {
@@ -277,10 +277,10 @@ window.Modernizr = (function( window, document, undefined ) {
         }
         return ret;
     };
-    tests['csstransitions'] = function() {
+    tests['csstransitions'] = function () {
         return testPropsAll('transition');
     };
-    tests['fontface'] = function() {
+    tests['fontface'] = function () {
         var bool;
         injectElementWithStyles('@font-face {font-family:"font";src:url("https://")}', function( node, rule ) {
           var style = document.getElementById('smodernizr'),
@@ -290,14 +290,14 @@ window.Modernizr = (function( window, document, undefined ) {
         });
         return bool;
     };
-    tests['generatedcontent'] = function() {
+    tests['generatedcontent'] = function () {
         var bool;
         injectElementWithStyles(['#',mod,'{font:0/0 a}#',mod,':after{content:"',smile,'";visibility:hidden;font:3px/1 a}'].join(''), function( node ) {
           bool = node.offsetHeight >= 3;
         });
         return bool;
     };
-    tests['video'] = function() {
+    tests['video'] = function () {
         var elem = document.createElement('video'),
             bool = false;
             try {
@@ -310,7 +310,7 @@ window.Modernizr = (function( window, document, undefined ) {
         } catch(e) { }
         return bool;
     };
-    tests['audio'] = function() {
+    tests['audio'] = function () {
         var elem = document.createElement('audio'),
             bool = false;
         try {
@@ -325,7 +325,7 @@ window.Modernizr = (function( window, document, undefined ) {
         } catch(e) { }
         return bool;
     };
-    tests['localstorage'] = function() {
+    tests['localstorage'] = function () {
         try {
             localStorage.setItem(mod, mod);
             localStorage.removeItem(mod);
@@ -334,7 +334,7 @@ window.Modernizr = (function( window, document, undefined ) {
             return false;
         }
     };
-    tests['sessionstorage'] = function() {
+    tests['sessionstorage'] = function () {
         try {
             sessionStorage.setItem(mod, mod);
             sessionStorage.removeItem(mod);
@@ -343,24 +343,24 @@ window.Modernizr = (function( window, document, undefined ) {
             return false;
         }
     };
-    tests['webworkers'] = function() {
+    tests['webworkers'] = function () {
         return !!window.Worker;
     };
-    tests['applicationcache'] = function() {
+    tests['applicationcache'] = function () {
         return !!window.applicationCache;
     };
-    tests['svg'] = function() {
+    tests['svg'] = function () {
         return !!document.createElementNS && !!document.createElementNS(ns.svg, 'svg').createSVGRect;
     };
-    tests['inlinesvg'] = function() {
+    tests['inlinesvg'] = function () {
       var div = document.createElement('div');
       div.innerHTML = '<svg/>';
       return (div.firstChild && div.firstChild.namespaceURI) == ns.svg;
     };
-    tests['smil'] = function() {
+    tests['smil'] = function () {
         return !!document.createElementNS && /SVGAnimate/.test(toString.call(document.createElementNS(ns.svg, 'animate')));
     };
-    tests['svgclippaths'] = function() {
+    tests['svgclippaths'] = function () {
         return !!document.createElementNS && /SVGClipPath/.test(toString.call(document.createElementNS(ns.svg, 'clipPath')));
     };
     function webforms() {

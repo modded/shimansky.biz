@@ -10,7 +10,7 @@
         }
         // dirty hack for simple-hint to receive getHint event on space
         var getTokenAt = editor.getTokenAt;
-        editor.getTokenAt = function() { return 'disabled'; };
+        editor.getTokenAt = function () { return 'disabled'; };
         CodeMirror.simpleHint(cm, getHint);
         editor.getTokenAt = getTokenAt;
     };

@@ -2,9 +2,9 @@
   mustache.js — Logic-less templates in JavaScript
   See http://mustache.github.com/ for more info.
 */
-var Mustache = function() {
+var Mustache = function () {
   var regexCache = {};
-  var Renderer = function() {};
+  var Renderer = function () {};
   Renderer.prototype = {
     otag: "{{",
     ctag: "}}",
@@ -166,7 +166,7 @@ var Mustache = function() {
     render_tags: function(template, context, partials, in_recursion) {
       // tit for tat
       var that = this;
-      var new_regex = function() {
+      var new_regex = function () {
         return that.getCachedRegex("render_tags", function(otag, ctag) {
           return new RegExp(otag + "(=|!|>|\\{|%)?([^\\/#\\^]+?)\\1?" + ctag + "+", "g");
         });

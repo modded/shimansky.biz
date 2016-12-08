@@ -12,8 +12,8 @@ var ZeroClipboard = {
 		if (typeof(thingy) == 'string') thingy = document.getElementById(thingy);
 		if (!thingy.addClass) {
 			// extend element with a few useful methods
-			thingy.hide = function() { this.style.display = 'none'; };
-			thingy.show = function() { this.style.display = ''; };
+			thingy.hide = function () { this.style.display = 'none'; };
+			thingy.show = function () { this.style.display = ''; };
 			thingy.addClass = function(name) { this.removeClass(name); this.className += ' ' + name; };
 			thingy.removeClass = function(name) {
 				var classes = this.className.split(/\s+/);

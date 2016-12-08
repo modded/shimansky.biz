@@ -553,7 +553,7 @@
     if (hasHandler(emitter, type))
       this.events.push(arguments);
   };
-  DisplayUpdate.prototype.finish = function() {
+  DisplayUpdate.prototype.finish = function () {
     for (var i = 0; i < this.events.length; i++)
       signal.apply(null, this.events[i]);
   };
@@ -1295,7 +1295,7 @@
         // Try to detect the user choosing select-all
         if (te.selectionStart != null) {
           if (!ie || (ie && ie_version < 9)) prepareSelectAllHack();
-          var i = 0, poll = function() {
+          var i = 0, poll = function () {
             if (display.selForContextMenu == cm.doc.sel && te.selectionStart == 0 && input.prevInput == "\u200b")
               operation(cm, commands.selectAll)(cm);
             else if (i++ < 10) display.detectingSelectAll = setTimeout(poll, 500);
@@ -1307,7 +1307,7 @@
       if (ie && ie_version >= 9) prepareSelectAllHack();
       if (captureRightClick) {
         e_stop(e);
-        var mouseup = function() {
+        var mouseup = function () {
           off(window, "mouseup", mouseup);
           setTimeout(rehide, 20);
         };
@@ -5180,7 +5180,7 @@
       if (!options.leaveSubmitMethodAlone) {
         var form = textarea.form, realSubmit = form.submit;
         try {
-          var wrappedSubmit = form.submit = function() {
+          var wrappedSubmit = form.submit = function () {
             save();
             form.submit = realSubmit;
             form.submit();
@@ -5191,8 +5191,8 @@
     }
     options.finishInit = function(cm) {
       cm.save = save;
-      cm.getTextArea = function() { return textarea; };
-      cm.toTextArea = function() {
+      cm.getTextArea = function () { return textarea; };
+      cm.toTextArea = function () {
         cm.toTextArea = isNaN; // Prevent this from being ran twice
         save();
         textarea.parentNode.removeChild(cm.getWrapperElement());
@@ -5302,7 +5302,7 @@
   };
   eventMixin(TextMarker);
   // Clear the marker.
-  TextMarker.prototype.clear = function() {
+  TextMarker.prototype.clear = function () {
     if (this.explicitlyCleared) return;
     var cm = this.doc.cm, withOp = cm && !cm.curOp;
     if (withOp) startOperation(cm);
@@ -5366,7 +5366,7 @@
   };
   // Signals that the marker's widget changed, and surrounding layout
   // should be recomputed.
-  TextMarker.prototype.changed = function() {
+  TextMarker.prototype.changed = function () {
     var pos = this.find(-1, true), widget = this, cm = this.doc.cm;
     if (!pos || !cm) return;
     runInOp(cm, function() {
@@ -5480,7 +5480,7 @@
       markers[i].parent = this;
   };
   eventMixin(SharedTextMarker);
-  SharedTextMarker.prototype.clear = function() {
+  SharedTextMarker.prototype.clear = function () {
     if (this.explicitlyCleared) return;
     this.explicitlyCleared = true;
     for (var i = 0; i < this.markers.length; ++i)
@@ -5850,7 +5850,7 @@
     if (heightAtLine(line) < ((cm.curOp && cm.curOp.scrollTop) || cm.doc.scrollTop))
       addToScrollPos(cm, null, diff);
   }
-  LineWidget.prototype.clear = function() {
+  LineWidget.prototype.clear = function () {
     var cm = this.doc.cm, ws = this.line.widgets, line = this.line, no = lineNo(line);
     if (no == null || !ws) return;
     for (var i = 0; i < ws.length; ++i) if (ws[i] == this) ws.splice(i--, 1);
@@ -5862,7 +5862,7 @@
       regLineChange(cm, no, "widget");
     });
   };
-  LineWidget.prototype.changed = function() {
+  LineWidget.prototype.changed = function () {
     var oldH = this.height, cm = this.doc.cm, line = this.line;
     this.height = null;
     var diff = widgetHeight(this) - oldH;
@@ -5915,7 +5915,7 @@
     this.height = estimateHeight ? estimateHeight(this) : 1;
   };
   eventMixin(Line);
-  Line.prototype.lineNo = function() { return lineNo(this); };
+  Line.prototype.lineNo = function () { return lineNo(this); };
   // Change the content (text, markers) of a line. Automatically
   // invalidates cached information and tries to re-estimate the
   // line's height.
@@ -7448,7 +7448,7 @@
   function activeElt() { return document.activeElement; }
   // Older versions of IE throws unspecified error when touching
   // document.activeElement in some cases (during loading, in iframe)
-  if (ie && ie_version < 11) activeElt = function() {
+  if (ie && ie_version < 11) activeElt = function () {
     try { return document.activeElement; }
     catch(e) { return document.body; }
   };
@@ -7505,7 +7505,7 @@
   }
   // FEATURE DETECTION
   // Detect drag-and-drop
-  var dragAndDrop = function() {
+  var dragAndDrop = function () {
     // There is *some* kind of drag-and-drop support in IE6-8, but I
     // couldn't get it to work yet.
     if (ie && ie_version < 9) return false;
