@@ -281,12 +281,12 @@ var openDeviceBrowser = function (a) {
 	"use strict";
 	var w = window,
 	g = function () {
-		var electronShell = "undefined" !== typeof isElectron && isElectron ? require("electron").shell : "";
-		return electronShell ? electronShell.openExternal(a) : "";
+		var es = "undefined" !== typeof isElectron && isElectron ? require("electron").shell : "";
+		return es ? es.openExternal(a) : "";
 	},
 	k = function () {
-		var nwGui = "undefined" !== typeof isNwjs && isNwjs ? require("nw.gui") : "";
-		return nwGui ? nwGui.Shell.openExternal(a) : "";
+		var ns = "undefined" !== typeof isNwjs && isNwjs ? require("nw.gui").Shell : "";
+		return ns ? ns.openExternal(a) : "";
 	},
 	q = function () {
 		/*!
@@ -391,16 +391,17 @@ evento.add(window, "load", manageLocalLinks.bind(null, ""));
  * init comments logic
  */
 var initComments = function () {
-	/*!
-	 * init menu
-	 */
 	if ("undefined" !== typeof window.jQuery) {
+		/*!
+		 * init menu
+		 */
 		$(document).ready(function () {
-			$("#show-menu").click(function (e) {
+			var h_show_menu = function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				$("#wrapper").toggleClass("active");
-			});
+			};
+			$("#show-menu").click(h_show_menu);
 			var maxHeight = 0;
 			$(".activity-feed-wrapper").each(function () {
 				if ($(this).height() > maxHeight) {
@@ -409,11 +410,9 @@ var initComments = function () {
 			});
 			$(".activity-feed-wrapper").height(maxHeight);
 		});
-	}
-	/*!
-	 * init comments
-	 */
-	if ("undefined" !== typeof window.jQuery) {
+		/*!
+		 * init comments
+		 */
 		$(function () {
 			"use strict";
 			var w = window,
@@ -448,7 +447,7 @@ var initComments = function () {
 				delay: 3E3
 			};
 			if (comments_textarea) {
-				comments_form_submit_button.click(function () {
+				var h_comments_form_submit_button = function () {
 					var comments_textarea_value = comments_textarea.val(),
 					self_href = encodeURIComponent(w.location.href.split("#")[0]),
 					fixed_title = encodeURIComponent(d.title.replace("'", "&#39;")),
@@ -473,17 +472,19 @@ var initComments = function () {
 						}
 					});
 					return !1;
-				});
+				};
+				comments_form_submit_button.click(h_comments_form_submit_button);
 				var comments_textarea_current_value = comments_textarea.val(),
 				self_href = localStorage.getItem("comments_textarea");
 				if (!comments_textarea_current_value && self_href) {
 					comments_textarea.val($.parseJSON(self_href));
 				}
-				comments_form_reset_button.click(function () {
+				var h_comments_form_reset_button = function () {
 					localStorage.removeItem("comments_textarea");
 					comments_textarea.val("");
 					comments_textarea.focus();
-				});
+				};
+				comments_form_reset_button.click(h_comments_form_reset_button);
 			}
 			load_pt_comments.load("/scripts/comments/?load=posts&limit=100");
 		});
@@ -514,11 +515,11 @@ var initUiTotop = function () {
 	h = BALA.one("html") || "",
 	u = "ui-totop",
 	v = "ui-totop-hover",
-	g = function (cb) {
+	g = function (f) {
 		var z = function (n) {
 			var o = w.pageYOffset,
 			i = 0,
-			f = function (o, l) {
+			x = function (o, l) {
 					return function () {
 						l -= o * n;
 						w.scrollTo(0, l);
@@ -528,7 +529,7 @@ var initUiTotop = function () {
 						}
 					};
 				},
-			si = setInterval(f.bind(null, n, o--), 50);
+			si = setInterval(x.bind(null, n, o--), 50);
 		},
 		t = "Наверх",
 		a = crel("a"),
@@ -552,8 +553,8 @@ var initUiTotop = function () {
 		setStyleOpacity(a, 0);
 		s.id = v;
 		appendFragment(crel(a, s, "" + t), b);
-		if (cb && "function" === typeof cb) {
-			cb();
+		if (f && "function" === typeof f) {
+			f();
 		}
 	},
 	k = function (_this) {
@@ -575,9 +576,7 @@ var initUiTotop = function () {
 		/* w.onscroll = k.bind(null, w); */
 	};
 	if (b) {
-		g(function () {
-			q();
-		});
+		g(q);
 	}
 };
 docReady(initUiTotop);
@@ -587,7 +586,9 @@ docReady(initUiTotop);
 var showPageFinishProgress = function () {
 	"use strict";
 	var a = BALA.one("#page") || "",
-	pBC = progressBar.complete();
+	pBC = function () {
+		progressBar.complete();
+	};
 	setStyleOpacity(a, 1);
 	setImmediate(pBC);
 };

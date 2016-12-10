@@ -287,12 +287,12 @@ var openDeviceBrowser = function (a) {
 	"use strict";
 	var w = window,
 	g = function () {
-		var electronShell = "undefined" !== typeof isElectron && isElectron ? require("electron").shell : "";
-		return electronShell ? electronShell.openExternal(a) : "";
+		var es = "undefined" !== typeof isElectron && isElectron ? require("electron").shell : "";
+		return es ? es.openExternal(a) : "";
 	},
 	k = function () {
-		var nwGui = "undefined" !== typeof isNwjs && isNwjs ? require("nw.gui") : "";
-		return nwGui ? nwGui.Shell.openExternal(a) : "";
+		var ns = "undefined" !== typeof isNwjs && isNwjs ? require("nw.gui").Shell : "";
+		return ns ? ns.openExternal(a) : "";
 	},
 	q = function () {
 		/*!
@@ -396,17 +396,18 @@ evento.add(window, "load", manageLocalLinks.bind(null, ""));
 /*!
  * init search and autocomplete logic
  */
-var initSearchAutocomplete = function () {
-	/*!
-	 * init menu
-	 */
+var initSearch = function () {
 	if ("undefined" !== typeof window.jQuery) {
+		/*!
+		 * init menu
+		 */
 		$(document).ready(function () {
-			$("#show-menu").click(function (e) {
+			var h_show_menu = function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				$("#wrapper").toggleClass("active");
-			});
+			};
+			$("#show-menu").click(h_show_menu);
 			var maxHeight = 0;
 			$(".activity-feed-wrapper").each(function () {
 				if ($(this).height() > maxHeight) {
@@ -415,90 +416,90 @@ var initSearchAutocomplete = function () {
 			});
 			$(".activity-feed-wrapper").height(maxHeight);
 		});
-	}
-	/*!
-	 * init search submit
-	 */
-	if ("undefined" !== typeof window.jQuery && jQuery.pnotify) {
-		$(document).ready(function () {
-			var text = $("#text") || "",
-			search_form_submit_button = $("#search_form_submit_button") || "",
-			error_msg = {
-				history: !1,
-				stack: !1,
-				title: "Неуспешно",
-				text: " Введите Ваш запрос! ",
-				opacity: 1,
-				width: "280px",
-				remove: !0,
-				pnotify_addclass: "ui-pnotify-error",
-				delay: 3E3
-			},
-			search_form = $("#search_form") || "",
-			search_form_reset_button = $("#search_form_reset_button") || "",
-			notify = jQuery.pnotify || "";
-			if (text) {
-				search_form_submit_button.click(function (event) {
-					if (text.val()) {
-						search_form.submit();
-					} else {
-						event.preventDefault();
-						notify(error_msg);
-					}
-				});
-				search_form_reset_button.click(function () {
-					text.focus();
-				});
-			}
-		});
-	}
-	/*!
-	 * init autocomplete
-	 * results are cached cache.sqlite > cache_search_autocomplete
-	 */
-	if ("undefined" !== typeof window.jQuery && $.fn.autocomplete) {
-		$(document).ready(function () {
-			var text = "text",
-			search_form = "search_form",
-			action = "/scripts/autocomplete/";
-			$("#" + text).autocomplete({
-				source: function (b, a) {
-					$.ajax({
-						url: action,
-						dataType: "json",
-						data: {
-							q: b.term,
-							limit: 5
-						},
-						success: function (b) {
-							a($.map(b, function (a) {
-									return {
-										label: a.value,
-										value: a.name
-									};
-								}));
+		/*!
+		 * init search submit
+		 */
+		if (jQuery.pnotify) {
+			$(document).ready(function () {
+				var text = $("#text") || "",
+				search_form_submit_button = $("#search_form_submit_button") || "",
+				error_msg = {
+					history: !1,
+					stack: !1,
+					title: "Неуспешно",
+					text: " Введите Ваш запрос! ",
+					opacity: 1,
+					width: "280px",
+					remove: !0,
+					pnotify_addclass: "ui-pnotify-error",
+					delay: 3E3
+				},
+				search_form = $("#search_form") || "",
+				search_form_reset_button = $("#search_form_reset_button") || "",
+				notify = jQuery.pnotify || "";
+				if (text) {
+					var h_search_form_submit_button = function (event) {
+						if (text.val()) {
+							search_form.submit();
+						} else {
+							event.preventDefault();
+							notify(error_msg);
 						}
-					});
-				},
-				minLength: 1,
-				select: function (b, a) {
-					if (a.item.value && (a.item.value.match(/^http\:\/\//) || a.item.value.match(/^https\:\/\//) || a.item.value.match(/^\/search\//) || a.item.value.match(/^\//))) {
-						$(b.target).val($("#" + text).val());
-						$("#" + search_form).submit();
-						return changeLocation(a.item.value),
-						!1;
-					}
-				},
-				open: function () {},
-				close: function () {}
+					};
+					search_form_submit_button.click(h_search_form_submit_button);
+					var h_search_form_reset_button = text.focus();
+					search_form_reset_button.click(h_search_form_reset_button);
+				}
 			});
-		});
+		}
+		/*!
+		 * init autocomplete
+		 * results are cached cache.sqlite > cache_search_autocomplete
+		 */
+		if ($.fn.autocomplete) {
+			$(document).ready(function () {
+				var text = "text",
+				search_form = "search_form",
+				action = "/scripts/autocomplete/";
+				$("#" + text).autocomplete({
+					source: function (b, a) {
+						$.ajax({
+							url: action,
+							dataType: "json",
+							data: {
+								q: b.term,
+								limit: 5
+							},
+							success: function (b) {
+								a($.map(b, function (a) {
+										return {
+											label: a.value,
+											value: a.name
+										};
+									}));
+							}
+						});
+					},
+					minLength: 1,
+					select: function (b, a) {
+						if (a.item.value && (a.item.value.match(/^http\:\/\//) || a.item.value.match(/^https\:\/\//) || a.item.value.match(/^\/search\//) || a.item.value.match(/^\//))) {
+							$(b.target).val($("#" + text).val());
+							$("#" + search_form).submit();
+							return changeLocation(a.item.value),
+							!1;
+						}
+					},
+					open: function () {},
+					close: function () {}
+				});
+			});
+		}
 	}
 };
-var loadInitSearchAutocomplete = function () {
-	ajaxLoadTriggerJS("../libs/search/js/vendors.min.js", initSearchAutocomplete);
+var loadInitSearch = function () {
+	ajaxLoadTriggerJS("../libs/search/js/vendors.min.js", initSearch);
 };
-docReady(loadInitSearchAutocomplete);
+docReady(loadInitSearch);
 /*!
  * init search text focus
  */
@@ -528,11 +529,11 @@ var initUiTotop = function () {
 	h = BALA.one("html") || "",
 	u = "ui-totop",
 	v = "ui-totop-hover",
-	g = function (cb) {
+	g = function (f) {
 		var z = function (n) {
 			var o = w.pageYOffset,
 			i = 0,
-			f = function (o, l) {
+			x = function (o, l) {
 					return function () {
 						l -= o * n;
 						w.scrollTo(0, l);
@@ -542,7 +543,7 @@ var initUiTotop = function () {
 						}
 					};
 				},
-			si = setInterval(f.bind(null, n, o--), 50);
+			si = setInterval(x.bind(null, n, o--), 50);
 		},
 		t = "Наверх",
 		a = crel("a"),
@@ -566,8 +567,8 @@ var initUiTotop = function () {
 		setStyleOpacity(a, 0);
 		s.id = v;
 		appendFragment(crel(a, s, "" + t), b);
-		if (cb && "function" === typeof cb) {
-			cb();
+		if (f && "function" === typeof f) {
+			f();
 		}
 	},
 	k = function (_this) {
@@ -589,9 +590,7 @@ var initUiTotop = function () {
 		/* w.onscroll = k.bind(null, w); */
 	};
 	if (b) {
-		g(function () {
-			q();
-		});
+		g(q);
 	}
 };
 docReady(initUiTotop);
@@ -601,7 +600,9 @@ docReady(initUiTotop);
 var showPageFinishProgress = function () {
 	"use strict";
 	var a = BALA.one("#page") || "",
-	pBC = progressBar.complete();
+	pBC = function () {
+		progressBar.complete();
+	};
 	setStyleOpacity(a, 1);
 	setImmediate(pBC);
 };
