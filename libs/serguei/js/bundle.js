@@ -248,11 +248,6 @@ var setAutoClearedTimeout=function(f,n){n=n||200;if(f&&"function"===typeof f){va
  */
 var Interval=function(d,f){this.baseline=void 0;this.run=function(){if(void 0===this.baseline){this.baseline=(new Date()).getTime();}f();var c=(new Date()).getTime();this.baseline+=d;var b=d-(c-this.baseline);if(0>b){b=0;}(function(d){d.timer=setTimeout(function(){d.run(c);},b);}(this));};this.stop=function(){clearTimeout(this.timer);};};
 /*!
- * Scroll to top with Zenscroll, or fallback
- * scrollToTop()
- */
-var scrollToTop=function(){var w=window;return w.zenscroll?zenscroll.toY(0):w.scrollTo(0,0);};
-/*!
  * Plain javascript replacement for jQuery's .ready()
  * so code can be scheduled to run when the document is ready
  * github.com/jfriend00/docReady
@@ -375,6 +370,11 @@ var setStyleVisibilityVisible=function(a){return function(){if(a){a.style.visibi
  * setStyleVisibilityHidden(a)
  */
 var setStyleVisibilityHidden=function(a){return function(){if(a){a.style.visibility="hidden";}}();};
+/*!
+ * Scroll to top with Zenscroll, or fallback
+ * scrollToTop()
+ */
+var scrollToTop=function(){var w=window;return w.zenscroll?zenscroll.toY(0):w.scrollTo(0,0);};
 /*!
  * modified for babel Unified URL parsing API in the browser and node
  * github.com/wooorm/parse-link
@@ -1561,54 +1561,6 @@ var manageDataTargetLinks = function (ctx) {
 };
 evento.add(window, "load", manageDataTargetLinks.bind(null, ""));
 /*!
- * observe mutations
- * bind functions only for inserted DOM
- */
-var observeMutations = function (c) {
-	"use strict";
-	c = BALA.one(c) || "";
-	if (c) {
-		var g = function (e) {
-			var fe = function (m) {
-				console.log("mutations observer: " + m.type);
-				console.log(m.type, "added: " + m.addedNodes.length + " nodes");
-				console.log(m.type, "removed: " + m.removedNodes.length + " nodes");
-				if ("childList" === m.type || "subtree" === m.type) {
-					mo.disconnect();
-					manageExternalLinks(c);
-					manageLocalLinks(c);
-					manageDataTargetLinks(c);
-					manageDataSrcImg(c);
-					manageDataLightboxImgLinks(c);
-				}
-			};
-			e.forEach(fe);
-		},
-		mo = new MutationObserver(g);
-		mo.observe(c, {
-			childList: !0,
-			subtree: !0,
-			attributes: !1,
-			characterData: !1
-		});
-	}
-};
-/*!
- * apply changes to inserted DOM
- */
-var updateInsertedDom = function () {
-	"use strict";
-	var w = window,
-	h = w.location.hash || "",
-	pN = "parentNode",
-	c = BALA.one("#container-includes")[pN] || "";
-	if (c && h) {
-		observeMutations(c);
-	}
-};
-evento.add(window, "load", updateInsertedDom);
-evento.add(window, "hashchange", updateInsertedDom);
-/*!
  * insert External HTML
  * @param {String} a Target Element id/class
  * @param {String} u path string
@@ -1796,6 +1748,54 @@ var initRoutie = function (ci) {
 	});
 }
 ("#container-includes");
+/*!
+ * observe mutations
+ * bind functions only for inserted DOM
+ */
+var observeMutations = function (c) {
+	"use strict";
+	c = BALA.one(c) || "";
+	if (c) {
+		var g = function (e) {
+			var fe = function (m) {
+				console.log("mutations observer: " + m.type);
+				console.log(m.type, "added: " + m.addedNodes.length + " nodes");
+				console.log(m.type, "removed: " + m.removedNodes.length + " nodes");
+				if ("childList" === m.type || "subtree" === m.type) {
+					mo.disconnect();
+					manageExternalLinks(c);
+					manageLocalLinks(c);
+					manageDataTargetLinks(c);
+					manageDataSrcImg(c);
+					manageDataLightboxImgLinks(c);
+				}
+			};
+			e.forEach(fe);
+		},
+		mo = new MutationObserver(g);
+		mo.observe(c, {
+			childList: !0,
+			subtree: !0,
+			attributes: !1,
+			characterData: !1
+		});
+	}
+};
+/*!
+ * apply changes to inserted DOM
+ */
+var updateInsertedDom = function () {
+	"use strict";
+	var w = window,
+	h = w.location.hash || "",
+	pN = "parentNode",
+	c = BALA.one("#container-includes")[pN] || "";
+	if (c && h) {
+		observeMutations(c);
+	}
+};
+evento.add(window, "load", updateInsertedDom);
+evento.add(window, "hashchange", updateInsertedDom);
 /*!
  * init manUP.js
  */
