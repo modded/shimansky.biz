@@ -382,7 +382,7 @@ $SQLITE_CACHE = null;
 				<li><a href="../pages/tests/tests_grammar_tests_with_answers.html">Тесты по&#160;грамматике</a></li>
 				<li><a href="../pages/tests/tests_gia_ege_letter_sample.html">ГИА&#160;/ ЕГЭ: Задания&#160;33, 39</a></li>
 				<li><a href="../pages/tests/tests_ege_essay_sample.html">ЕГЭ: Задание&#160;40</a></li>
-				<li><a href="../pages/webdev/webdev_about.html">О&#160;сайте</a></li>
+				<li><a href="../sitemap.html">Карта сайта</a></li>
 						</ul>
 					</div>
 				</div>
