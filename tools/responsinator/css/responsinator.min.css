@@ -323,7 +323,7 @@ and (min-width : 321px){
 and (max-width : 479px){
 /* YOUR STYLE GOES HERE */
 }
-/*!*** ANDROID DEVICES *****/
+/***** ANDROID DEVICES *****/
 /* Android 240 X 320 ----------- */
 @media only screen
 and (max-width: 241px){
@@ -353,7 +353,7 @@ and (min-width: 1000px)
 and (max-width: 1030px){
 /* YOUR STYLE GOES HERE */
 }
-/*!*** ALL GENERATION IPADS *****/
+/***** ALL GENERATION IPADS *****/
 /* iPads in portrait and landscape----------- */
 @media only screen 
 and (min-device-width : 768px) 
@@ -374,7 +374,7 @@ and (max-device-width : 1024px)
 and (orientation : portrait){
 /* YOUR STYLE GOES HERE */
 }
-/*!*** Retina IPAD 3 & 4*****/
+/***** Retina IPAD 3 & 4*****/
 /* Retina iPad 3 & 4 in portrait and landscape----------- */
 @media only screen 
 and (min-device-width : 768px) 
@@ -398,7 +398,7 @@ and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio: 2){
 /* YOUR STYLE GOES HERE */
 }
-/*!*** IPAD 1 & 2 (ALSO IPAD MINI)*****/
+/***** IPAD 1 & 2 (ALSO IPAD MINI)*****/
 /* iPad 1 & 2 in portrait and landscape ----------- */
 @media only screen 
 and (min-device-width : 768px) 
