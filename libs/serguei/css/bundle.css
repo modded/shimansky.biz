@@ -1,4 +1,4 @@
-/* @import "serguei-font-face"; */
+/* @import "serguei-englishextra-font-face"; */
 @font-face{font-family:"englishextra-ui-icons";src:url(../../../fonts/englishextra-ui-icons-fontfacekit/englishextra-ui-icons.woff2) format("woff2"),url(../../../fonts/englishextra-ui-icons-fontfacekit/englishextra-ui-icons.woff) format("woff"),url(../../../fonts/englishextra-ui-icons-fontfacekit/englishextra-ui-icons.ttf) format("truetype");font-weight:normal;font-style:normal;}
 @font-face{font-family:"Source Sans Pro";src:url(../../../fonts/source-sans-pro-fontfacekit/SourceSansPro-Light.otf.woff2) format("woff2"),url(../../../fonts/source-sans-pro-fontfacekit/SourceSansPro-Light.otf.woff) format("woff"),url(../../../fonts/source-sans-pro-fontfacekit/SourceSansPro-Light.ttf) format("truetype");font-weight:300;font-style:normal;font-stretch:normal;}
 @font-face{font-family:"Source Sans Pro";src:url(../../../fonts/source-sans-pro-fontfacekit/SourceSansPro-Regular.otf.woff2) format("woff2"),url(../../../fonts/source-sans-pro-fontfacekit/SourceSansPro-Regular.otf.woff) format("woff"),url(../../../fonts/source-sans-pro-fontfacekit/SourceSansPro-Regular.ttf) format("truetype");font-weight:400;font-style:normal;font-stretch:normal;}
@@ -79,6 +79,56 @@ button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-bloc
 		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
+}
+/* @import "serguei-englishextra-site-logo"; */
+/**
+ * site logo
+ */
+.holder-site-logo {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	text-align: center;
+	background: none #2D7C9A;
+	padding: 0;
+	margin: 0;
+	z-index: 1004;
+}
+.site-logo {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 8.000rem;
+	height: 8.250rem;
+	line-height: 0;
+	vertical-align: middle;
+	background-color: transparent;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE2IDE2IiB4bWw6c3BhY2U9InByZXNlcnZlIj48cmVjdCBpZD0iWE1MSURfN18iIGZpbGw9Im5vbmUiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPjxnIGlkPSJYTUxJRF8xXyI+PHBhdGggaWQ9IlhNTElEXzJfIiBmaWxsPSIjRkZGRkZGIiBkPSJNMTAuNDM2LDcuNTQ0QzkuNzMxLDguMDAzLDkuMDY5LDguNTMzLDguNDc3LDkuMTIzYzAuMDQ0LTEuNjI3LDAuMjE2LTMuMjQ2LDAuNTUxLTQuODQ5YzAuMDc2LTAuMzY1LTAuMjk2LTAuNTktMC42MzQtMC41MDVjLTAuNDI0LDAuMTA5LTAuNjc4LDAuNDczLTAuNzU5LDAuODZDNy4yMDgsNi42NzUsNy4wNDcsOC43NDcsNy4wNzgsMTAuODNjLTEuMDQtMC4wNzYtMS41NTMtMC42NzEtMS42NjktMS40OTJDNS40OCw4Ljk3LDUuNDk2LDguNTksNS40NzQsOC4yMTNjMC4yMTktMC4yMDIsMC4zNzUtMC40NzcsMC4zMi0wLjc3M0M1LjcyNiw3LjA3NSw1LjI4OSw2Ljk5Nyw0Ljk4OSw3LjE3QzMuNzI2LDcuODk5LDIuMjYxLDguNzc1LDEuNjUsMTAuMTIxYy0wLjI5NSwwLjY0OS0wLjE4NiwxLjQ0NCwwLjU5NCwxLjY5MmMwLjc3OCwwLjI0OSwxLjYzOS0wLjE5MywyLjE5Ni0wLjY5NWMwLjQ3LDAuNzEyLDEuMjk5LDEuMTYxLDIuNDg3LDEuMTNjMC4zODMtMC4wMSwwLjc0OC0wLjQwNywwLjg3Ni0wLjc3N2MwLjA1NS0wLjAyMiwwLjEwOC0wLjA1LDAuMTYxLTAuMDgxYy0wLjA3NywwLjM1OSwwLjA3LDAuNjc4LDAuNTg1LDAuNTY5YzIuMTg2LTAuNDYsMy4yMDctMi4yMTcsMi44NjYtNC4yNTVDMTEuMzI5LDcuMTk2LDEwLjc0Miw3LjM0NSwxMC40MzYsNy41NDR6IE0zLjY5MSwxMC4yNjdjLTAuMTI4LDAuMTM1LTAuNDQ0LDAuMjM0LTAuNjUsMC4xODZjLTAuMTM5LTAuMDM0LTAuMTMzLTAuMDYyLTAuMTY3LTAuMTI0YzAuMDIzLDAuMDQxLDAuMDA5LTAuMDM1LDAuMTA5LTAuMjAyQzMuMjA5LDkuNzUsMy41ODIsOS40MjcsMy45OTEsOS4xNDRDMy45NzUsOS4zNTUsMy45NzYsOS41NjEsMy45OTMsOS43NjFDMy45MjgsOS45NDMsMy44MzMsMTAuMTE2LDMuNjkxLDEwLjI2N3ogTTguNjczLDEwLjQ1Nkw4LjY3MywxMC40NTZjMC40MDMtMC40NzIsMC44ODctMC45NjYsMS40MS0xLjM3NkMxMC4wMjEsOS43ODgsOS42MjMsMTAuNDU2LDguNjczLDEwLjQ1NnoiLz48cGF0aCBpZD0iWE1MSURfOV8iIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xNC43NCwxMC4wMjhjLTAuNDE3LDAuMTk4LTEuNTIxLDAuNjc4LTEuNzAxLTAuMDQ4Yy0wLjE2My0wLjY1OCwwLjUxMS0xLjMyNCwwLjk5My0xLjY4OWMwLjI4MS0wLjIxNCwwLjU0Mi0wLjY1OCwwLjM0Ny0wLjk5N2MtMC4xOTctMC4zNDYtMC42Ny0wLjIwNy0wLjkyNS0wLjAxNWMtMS4wMjYsMC43NzgtMi4xMDUsMi4xMzYtMS43NzMsMy40NzFjMC4zNzIsMS41LDIuMjc4LDAuOTksMy4yOTEsMC41MDlDMTUuNzAyLDEwLjkxMiwxNS43MjEsOS41NjMsMTQuNzQsMTAuMDI4eiIvPjwvZz48L3N2Zz4=);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 8.000rem 8.250rem;
+	margin-top: -4.125rem;
+	margin-left: -4.000rem;
+}
+.holder-site-logo.animated {
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+.site-logo.animated {
+	-webkit-animation-duration: 2s;
+	animation-duration: 2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+.site-logo a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 /* @import "notifier42"; */
 /**
@@ -176,7 +226,7 @@ button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-bloc
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
-/* @import "serguei-animate.partial"; */
+/* @import "serguei-englishextra-animate.partial"; */
 /**
  * some animations from animate.css
  * github.com/daneden/animate.css
@@ -329,6 +379,18 @@ button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-bloc
 	padding: 0;
 	margin: 0;
 }
+/* @import "serguei-englishextra-contacts-qr-code"; */
+/**
+ * contacts qr code
+ */
+.contacts-qr-code {
+	display: inline-block;
+	width: 49%;
+	height: auto;
+}
+.contacts-qr-code .qr-code-img {
+	padding: 0.875rem;
+}
 /* @import "vk-like-light"; */
 /**
  * vk-like
@@ -426,69 +488,7 @@ button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-bloc
 	line-height: 33.000pt;
 	color: rgba(25,25,25,0.5);
 }
-/* @import "serguei-site-logo"; */
-/**
- * site logo
- */
-.holder-site-logo {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	text-align: center;
-	background: none #2D7C9A;
-	padding: 0;
-	margin: 0;
-	z-index: 1004;
-}
-.site-logo {
-	display: inline-block;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 8.000rem;
-	height: 8.250rem;
-	line-height: 0;
-	vertical-align: middle;
-	background-color: transparent;
-	background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE2IDE2IiB4bWw6c3BhY2U9InByZXNlcnZlIj48cmVjdCBpZD0iWE1MSURfN18iIGZpbGw9Im5vbmUiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPjxnIGlkPSJYTUxJRF8xXyI+PHBhdGggaWQ9IlhNTElEXzJfIiBmaWxsPSIjRkZGRkZGIiBkPSJNMTAuNDM2LDcuNTQ0QzkuNzMxLDguMDAzLDkuMDY5LDguNTMzLDguNDc3LDkuMTIzYzAuMDQ0LTEuNjI3LDAuMjE2LTMuMjQ2LDAuNTUxLTQuODQ5YzAuMDc2LTAuMzY1LTAuMjk2LTAuNTktMC42MzQtMC41MDVjLTAuNDI0LDAuMTA5LTAuNjc4LDAuNDczLTAuNzU5LDAuODZDNy4yMDgsNi42NzUsNy4wNDcsOC43NDcsNy4wNzgsMTAuODNjLTEuMDQtMC4wNzYtMS41NTMtMC42NzEtMS42NjktMS40OTJDNS40OCw4Ljk3LDUuNDk2LDguNTksNS40NzQsOC4yMTNjMC4yMTktMC4yMDIsMC4zNzUtMC40NzcsMC4zMi0wLjc3M0M1LjcyNiw3LjA3NSw1LjI4OSw2Ljk5Nyw0Ljk4OSw3LjE3QzMuNzI2LDcuODk5LDIuMjYxLDguNzc1LDEuNjUsMTAuMTIxYy0wLjI5NSwwLjY0OS0wLjE4NiwxLjQ0NCwwLjU5NCwxLjY5MmMwLjc3OCwwLjI0OSwxLjYzOS0wLjE5MywyLjE5Ni0wLjY5NWMwLjQ3LDAuNzEyLDEuMjk5LDEuMTYxLDIuNDg3LDEuMTNjMC4zODMtMC4wMSwwLjc0OC0wLjQwNywwLjg3Ni0wLjc3N2MwLjA1NS0wLjAyMiwwLjEwOC0wLjA1LDAuMTYxLTAuMDgxYy0wLjA3NywwLjM1OSwwLjA3LDAuNjc4LDAuNTg1LDAuNTY5YzIuMTg2LTAuNDYsMy4yMDctMi4yMTcsMi44NjYtNC4yNTVDMTEuMzI5LDcuMTk2LDEwLjc0Miw3LjM0NSwxMC40MzYsNy41NDR6IE0zLjY5MSwxMC4yNjdjLTAuMTI4LDAuMTM1LTAuNDQ0LDAuMjM0LTAuNjUsMC4xODZjLTAuMTM5LTAuMDM0LTAuMTMzLTAuMDYyLTAuMTY3LTAuMTI0YzAuMDIzLDAuMDQxLDAuMDA5LTAuMDM1LDAuMTA5LTAuMjAyQzMuMjA5LDkuNzUsMy41ODIsOS40MjcsMy45OTEsOS4xNDRDMy45NzUsOS4zNTUsMy45NzYsOS41NjEsMy45OTMsOS43NjFDMy45MjgsOS45NDMsMy44MzMsMTAuMTE2LDMuNjkxLDEwLjI2N3ogTTguNjczLDEwLjQ1Nkw4LjY3MywxMC40NTZjMC40MDMtMC40NzIsMC44ODctMC45NjYsMS40MS0xLjM3NkMxMC4wMjEsOS43ODgsOS42MjMsMTAuNDU2LDguNjczLDEwLjQ1NnoiLz48cGF0aCBpZD0iWE1MSURfOV8iIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xNC43NCwxMC4wMjhjLTAuNDE3LDAuMTk4LTEuNTIxLDAuNjc4LTEuNzAxLTAuMDQ4Yy0wLjE2My0wLjY1OCwwLjUxMS0xLjMyNCwwLjk5My0xLjY4OWMwLjI4MS0wLjIxNCwwLjU0Mi0wLjY1OCwwLjM0Ny0wLjk5N2MtMC4xOTctMC4zNDYtMC42Ny0wLjIwNy0wLjkyNS0wLjAxNWMtMS4wMjYsMC43NzgtMi4xMDUsMi4xMzYtMS43NzMsMy40NzFjMC4zNzIsMS41LDIuMjc4LDAuOTksMy4yOTEsMC41MDlDMTUuNzAyLDEwLjkxMiwxNS43MjEsOS41NjMsMTQuNzQsMTAuMDI4eiIvPjwvZz48L3N2Zz4=);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 8.000rem 8.250rem;
-	margin-top: -4.125rem;
-	margin-left: -4.000rem;
-}
-.holder-site-logo.animated {
-	-webkit-animation-duration: 0.5s;
-	animation-duration: 0.5s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-}
-.site-logo.animated {
-	-webkit-animation-duration: 2s;
-	animation-duration: 2s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-}
-.site-logo a {
-	display: inline-block;
-	width: 100%;
-	height: 100%;
-}
-/* @import "serguei-contacts-qr-code"; */
-/**
- * contacts qr code
- */
-.contacts-qr-code {
-	display: inline-block;
-	width: 49%;
-	height: auto;
-}
-.contacts-qr-code .qr-code-img {
-	padding: 0.875rem;
-}
-/* @import "serguei-sprites"; */
+/* @import "serguei-englishextra-sprites"; */
 /* Generated by http://responsive-css.spritegen.com Responsive CSS Sprite Generator */
 img[class^="serguei-"],img[class*=" serguei-"]{ max-width: 100%; background-size: 100%; background-image: url(../img/sprite.jpg); }
 .serguei-dk-salyut-640x356 { background-position: 0 0%; background-size: 100%; }
@@ -498,7 +498,7 @@ img[class^="serguei-"],img[class*=" serguei-"]{ max-width: 100%; background-size
 .serguei-kino35mm-640x356 { background-position: 0 66.666667%; background-size: 100%; }
 .serguei-map-dosflota-3-640x356 { background-position: 0 83.333333%; background-size: 100%; }
 .serguei-picture-640x356 { background-position: 0 100%; background-size: 100%; }
-/* @import "serguei-sprites2"; */
+/* @import "serguei-englishextra-sprites2"; */
 /* Generated by http://responsive-css.spritegen.com Responsive CSS Sprite Generator */
 img[class^="books-"],img[class*=" books-"]{ max-width: 100%; background-size: 100%; background-image: url(../img/sprite2.jpg); }
 .books-advanced-grammar-in-use { background-position: 0 0%; background-size: 100%; }
@@ -507,7 +507,7 @@ img[class^="books-"],img[class*=" books-"]{ max-width: 100%; background-size: 10
 .books-macmillan-exam-skills-for-russia-grammar-and-vocabulary { background-position: 0 76.344452%; background-size: 100%; }
 .books-collins-cobuild-english-grammar { background-position: 0 100%; background-size: 100%; }
 /* .col img[class^="books-"],.col img[class^=" books-"]{width:50%;} */
-/* @import "serguei-ymap"; */
+/* @import "serguei-englishextra-ymap"; */
 /**
  * Yandex map container
  */
@@ -581,7 +581,7 @@ img[class^="books-"],img[class*=" books-"]{ max-width: 100%; background-size: 10
 	line-height: 33.000pt;
 	color: rgba(25,25,25,0.5);
 }
-/* @import "serguei-main"; */
+/* @import "serguei-englishextra-main"; */
 /**
  * main
  */
