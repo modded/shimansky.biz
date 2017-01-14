@@ -355,7 +355,7 @@ $SQLITE_CACHE = null;
 		<!-- <link rel="stylesheet" href="../libs/search/css/bundle.min.css" /> -->
 		<style>
 			body{color:transparent;background-color:#F0F0F0;}a,ul,li,.panel-nav-menu li a,.holder-panel-menu-more{color:inherit;}ul{list-style-type:none;}.panel-nav-menu{background:transparent;}.panel-nav-menu,.holder-panel-menu-more,.btn-nav-menu,.btn-menu-more,.btn-show-vk-like,.share-buttons,.holder-search-form,.holder-contents-select,.location-qr-code,.contacts-qr-code,.cd-prev,.cd-next,.pswp,.superbox,.github-fork-ribbon a{display:none;}.ya-site-form.ya-site-form_inited_no{visibility:hidden}.page{opacity:0;}
-		</style>
+		</style><noscript><style>.page{opacity:1;}</style></noscript>
 	</head>
 	<body>
 		<div class="page" id="page" role="document">
