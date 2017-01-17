@@ -547,13 +547,13 @@ var initMasonry = function (ctx) {
 					percentPosition: !0,
 				});
 			console.log("function initMasonry => initialised iso");
-			if (w.imagesLoaded) {
+			/* if (w.imagesLoaded) {
 				imgLoad = imagesLoaded(a);
 				imgLoad.on("progress", function (instance) {
 					iso.layout();
 					console.log("function initMasonry => reinitialised iso");
 				});
-			}
+			} */
 			var h_btns = function (e) {
 				iso.arrange({
 					filter: e.dataset.filter
@@ -602,13 +602,13 @@ var initMasonry = function (ctx) {
 					percentPosition: !0
 				});
 			console.log("function initMasonry => initialised msnry");
-			if (w.imagesLoaded) {
+			/* if (w.imagesLoaded) {
 				imgLoad = imagesLoaded(a);
 				imgLoad.on("progress", function (instance) {
 					msnry.layout();
 					console.log("function initMasonry => reinitialised msnry");
 				});
-			}
+			} */
 			if (holder_controls) {
 				holder_controls.classList.remove("visible");
 			}
@@ -620,13 +620,13 @@ var initMasonry = function (ctx) {
 					percentPosition: !0
 				});
 			console.log("function initMasonry => initialised pckry");
-			if (w.imagesLoaded) {
+			/* if (w.imagesLoaded) {
 				imgLoad = imagesLoaded(a);
 				imgLoad.on("progress", function (instance) {
 					pckry.layout();
 					console.log("function initMasonry => reinitialised pckry");
 				});
-			}
+			} */
 			if (c) {
 				c = ctx ? BALA(h, ctx) || "" : BALA(h) || "";
 				if (w.Draggabilly) {
