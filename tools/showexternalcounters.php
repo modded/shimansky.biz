@@ -195,46 +195,44 @@ if ($event == 'clear') {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="robots" content="noindex,nofollow" />
 		<title>Журнал посещений</title>
-		<!-- <link rel="stylesheet" href="../libs/admin/css/bundle.min.css" /> -->
 		<style>
-			body{color:transparent;background-color:#F0F0F0;}a,ul,li,.panel-nav-menu li a,.holder-panel-menu-more{color:inherit;}ul{list-style-type:none;}.panel-nav-menu{background:transparent;}.panel-nav-menu,.holder-panel-menu-more,.btn-nav-menu,.btn-menu-more,.btn-show-vk-like,.share-buttons,.holder-search-form,.holder-contents-select,.location-qr-code,.contacts-qr-code,.cd-prev,.cd-next,.pswp,.superbox,.github-fork-ribbon a{display:none;}.ya-site-form.ya-site-form_inited_no{visibility:hidden;}.page{opacity:0;}
-		</style><noscript><link rel="stylesheet" href="../libs/admin/css/bundle.min.css" /><style>.page{opacity:1;}</style></noscript>
+			body{color:transparent;background-color:#F0F0F0;}a,ul,li,.panel-nav-menu li a,.holder-panel-menu-more{color:inherit;}ul{list-style-type:none;}.panel-nav-menu{background:transparent;}.panel-nav-menu,.holder-panel-menu-more,.btn-nav-menu,.btn-menu-more,.btn-show-vk-like,.share-buttons,.holder-search-form,.holder-contents-select,.location-qr-code,.contacts-qr-code,.cd-prev,.cd-next,.pswp,.superbox,.github-fork-ribbon a{display:none;}.ya-site-form.ya-site-form_inited_no{visibility:hidden;}.container{opacity:0;}
+		</style><noscript><link rel="stylesheet" href="../libs/admin/css/bundle.min.css" /><style>.container{opacity:1;}</style></noscript>
 	</head>
 	<body>
 		<div class="page" id="page" role="document">
-			<div class="stripe-top"></div>
-			<div class="header" id="header">
-				<a class="sitelogo" href="../index.html"></a>
-			</div>
-			<div id="content">
-				<div id="container" class="container" role="main">
-					<div class="row">
-						<div class="col span_12 cf">
-							<div class="span_1140 textcenter">
+			<ul id="panel-nav-menu" class="panel-nav-menu">
+				<li><a href="../pages/contents.html">Содержание</a></li>
+				<li><a href="../pages/articles/articles_reading_rules_utf.html">Правила чтения</a></li>
+				<li><a href="../pages/grammar/grammar_usage_of_articles_a_the.html">Артикли a&#160;/ an и&#160;the</a></li>
+				<li><a href="../pages/grammar/grammar_usage_of_tenses.html">Употребление времен</a></li>
+				<li><a href="../pages/grammar/grammar_phrasal_verbs.html">Фразовые глаголы</a></li>
+				<li><a href="../pages/aids/aids_topics.html">Топики на&#160;английском</a></li>
+				<li><a href="../pages/tests/tests_grammar_tests_with_answers.html">Тесты по&#160;грамматике</a></li>
+				<li><a href="../pages/tests/tests_gia_ege_letter_sample.html">ГИА&#160;/ ЕГЭ: Задания&#160;33, 39, 40</a></li>
+				<li><a href="../pages/tests/tests_ege_essay_sample.html">ЕГЭ: Задание&#160;40</a></li>
+				<li><a href="../sitemap.html">Карта сайта</a></li>
+			</ul>
+			<a href="../pages/contents.html" class="btn-nav-menu" id="btn-nav-menu" onclick="return!1;" title="Содержание"></a>
+			<div class="panel-nav-top"></div>
+			<div class="container" id="container" role="main">
+				<div class="content-wrapper">
+					<div class="grid grid-pad">
+						<div class="col col-1-1">
+							<div class="content">
 								<h1>Журнал посещений</h1>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col span_12 cf">
-							<div class="span_1140">
-								<table class="respond">
-									<thead>
-										<tr class="pme-header">
-											<th class="pme-header">Adddate</th>
-											<th class="pme-header" style="width:25%;">Referer
-											<br />
-											Self</th>
-											<th class="pme-header">Page title</th>
-											<th class="pme-header">Browser
-											<br />
-											Os</th>
-											<th class="pme-header">Host
-											<br />
-											Ip</th>
-										</tr>
-									</thead>
-									<tbody><?php
+					<div class="grid grid-pad">
+						<div class="col col-1-1">
+							<div class="content">
+								<h2>История посещений</h2>
+								<table class="respond table"><caption></caption><thead><tr><th>Adddate</th>
+											<th>Referer&#160;/ Self</th>
+											<th>Page title</th>
+											<th>Browser&#160;/ Os</th>
+											<th>Host&#160;/ Ip</th></tr></thead><tbody><?php
 try {
 	/**
 	 * if table exists
@@ -287,12 +285,12 @@ try {
 					}
 				}
 				echo '
-<tr class="pme-sortinfo">
-<td class="pme-cell-0" style="width:5%;">' . date("H:i:s", $fr[1]) . '<br />' . $fr[1] . '
-<td class="pme-cell-0" style="width:25%;"><span class="SlateGray"><strong>from:</strong>&#160;&#160;' . $fr4_text . '</span>&#160;&#160;<a href="' . $ShowExternalCounters->ensure_amp($fr[4]) . '" target="_blank">[&#8594;]</a><br /><span class="DarkSlateGray"><strong>to:</strong>&#160;&#160;' . $fr5_text . '</span>&#160;&#160;<a href="' . $ShowExternalCounters->ensure_amp($fr[5]) . '" target="_blank">[&#8594;]</a></td>
-<td class="pme-cell-0" style="width:25%;"><span class="DarkSlateGray">' . $ShowExternalCounters->ensure_amp($ShowExternalCounters->remove_tags(urldecode($fr[6]))) . '</span></td>
-<td class="pme-cell-0" style="width:25%;"><span class="FireBrick">' . $fr[7] . ' ' . $fr[8] . '</span><br /><span class="SeaGreen">' . $fr[9] . '</span><br /><span class="DarkSlateGray">' . $fr[10] . '</span></td>
-<td class="pme-cell-0" style="width:20%;"><span class="DarkSlateGray">' . $fr11_text . '<br /><a href="http://' . htmlentities($fr[12]) . '/" target="_blank">' . htmlentities(wordwrap($fr[12], 20, ' ', 1)) . '</a><br /><a href="http://ip-lookup.net/?ip=' . urlencode($fr[12]) . '" target="_blank">IP-LOOKUP</a>&#160;<a href="http://www.ripe.net/fcgi-bin/whois?form_type=simple&amp;full_query_string=&amp;searchtext=' . urlencode($fr[12]) . '&amp;submit.x=13&amp;submit.y=14&amp;submit=Search" target="_blank">RIPE</a>&#160;';
+<tr>
+<td data-label="Adddate">' . date("H:i:s", $fr[1]) . '<br />' . $fr[1] . '
+<td data-label="Referer / Self"><span class="SlateGray"><strong>from:</strong>&#160;&#160;' . $fr4_text . '</span>&#160;&#160;<a href="' . $ShowExternalCounters->ensure_amp($fr[4]) . '" target="_blank">[&#8594;]</a><br /><span class="DarkSlateGray"><strong>to:</strong>&#160;&#160;' . $fr5_text . '</span>&#160;&#160;<a href="' . $ShowExternalCounters->ensure_amp($fr[5]) . '" target="_blank">[&#8594;]</a></td>
+<td data-label="Page title"><span class="DarkSlateGray">' . $ShowExternalCounters->ensure_amp($ShowExternalCounters->remove_tags(urldecode($fr[6]))) . '</span></td>
+<td data-label="Browser / Os"><span class="FireBrick">' . $fr[7] . ' ' . $fr[8] . '</span><br /><span class="SeaGreen">' . $fr[9] . '</span><br /><span class="DarkSlateGray">' . $fr[10] . '</span></td>
+<td data-label="Host / Ip"><span class="DarkSlateGray">' . $fr11_text . '<br /><a href="http://' . htmlentities($fr[12]) . '/" target="_blank">' . htmlentities(wordwrap($fr[12], 20, ' ', 1)) . '</a><br /><a href="http://ip-lookup.net/?ip=' . urlencode($fr[12]) . '" target="_blank">IP-LOOKUP</a>&#160;<a href="http://www.ripe.net/fcgi-bin/whois?form_type=simple&amp;full_query_string=&amp;searchtext=' . urlencode($fr[12]) . '&amp;submit.x=13&amp;submit.y=14&amp;submit=Search" target="_blank">RIPE</a>&#160;';
 				if ($ShowExternalCounters->is_ip($fr[12])) {
 					echo '<a href="http://www.ipchecking.com/?ip=' . urlencode($fr[12]) . '&amp;check=Lookup" target="_blank">ipchecking</a>';
 				} else {
@@ -308,21 +306,21 @@ try {
 	echo $e->getMessage();
 }
 ob_end_flush();
-?></tbody>
-								</table>
+?></tbody></table>
+								<div>
+									<form action="#" id="actions_form" method="post">
+										<p class="textcenter">
+											<input type="hidden" name="event" value="clear" /><input class="btn uk-button" type="button" onclick="javascipt:document.location.reload();" value="Обновить" /><input class="btn uk-button" type="submit" value="Очистить" />
+										</p>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col span_12 cf">
-							<div class="span_1140 textcenter">
-								<form action="#" id="actions_form" method="post">
-									<p>
-										<input type="hidden" name="event" value="clear" />
-										<input class="btn uk-button" type="button" onclick="javascipt:document.location.reload();" value="Обновить" />
-										<input class="btn uk-button" type="submit" value="Очистить" />
-									</p>
-								</form>
+					<div class="grid grid-pad">
+						<div class="col col-1-1">
+							<div class="footer">
+								<p class="copyright">Это произведение доступно по&#160;<a href="https://creativecommons.org/licenses/by-nd/4.0/" rel="license">лицензии Creative Commons &#171;Attribution-NoDerivatives&#187; (&#171;Атрибуция&#160;&#8212; Без&#160;производных произведений&#187;) 4.0&#160;Всемирная</a>. <a href="https://github.com/englishextra">Исходный код</a> доступен публично. Права на&#160;иллюстрации принадлежат: 1)&#160;пользователям <a href="https://www.behance.net/">Behance</a>, либо Adobe Systems Incorporated; 2)&#160;пользователям <a href="https://www.domestika.org/">Domestika</a>, либо Domestika; 3)&#160;пользователям <a href="https://www.flickr.com/">Flickr</a>, либо Flickr, a&#160;Yahoo company; 4)&#160;пользователям <a href="https://unsplash.com/">Unsplash</a>, либо Unspalsh, a&#160;project by&#160;Crew. &#169;&#160;englishextra, 2006&#8212;2017</p>
 							</div>
 						</div>
 					</div>

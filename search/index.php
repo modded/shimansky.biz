@@ -352,27 +352,13 @@ $SQLITE_CACHE = null;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="robots" content="noindex,nofollow" />
 		<title>Поиск</title>
-		<!-- <link rel="stylesheet" href="../libs/search/css/bundle.min.css" /> -->
 		<style>
-			body{color:transparent;background-color:#F0F0F0;}a,ul,li,.panel-nav-menu li a,.holder-panel-menu-more{color:inherit;}ul{list-style-type:none;}.panel-nav-menu{background:transparent;}.panel-nav-menu,.holder-panel-menu-more,.btn-nav-menu,.btn-menu-more,.btn-show-vk-like,.share-buttons,.holder-search-form,.holder-contents-select,.location-qr-code,.contacts-qr-code,.cd-prev,.cd-next,.pswp,.superbox,.github-fork-ribbon a{display:none;}.ya-site-form.ya-site-form_inited_no{visibility:hidden;}.page{opacity:0;}
-		</style><noscript><link rel="stylesheet" href="../libs/search/css/bundle.min.css" /><style>.page{opacity:1;}</style></noscript>
+			body{color:transparent;background-color:#F0F0F0;}a,ul,li,.panel-nav-menu li a,.holder-panel-menu-more{color:inherit;}ul{list-style-type:none;}.panel-nav-menu{background:transparent;}.panel-nav-menu,.holder-panel-menu-more,.btn-nav-menu,.btn-menu-more,.btn-show-vk-like,.share-buttons,.holder-search-form,.holder-contents-select,.location-qr-code,.contacts-qr-code,.cd-prev,.cd-next,.pswp,.superbox,.github-fork-ribbon a{display:none;}.ya-site-form.ya-site-form_inited_no{visibility:hidden;}.container{opacity:0;}
+		</style><noscript><link rel="stylesheet" href="../libs/search/css/bundle.min.css" /><style>.container{opacity:1;}</style></noscript>
 	</head>
 	<body>
 		<div class="page" id="page" role="document">
-			<div class="topbanner" role="banner"></div>
-			<div id="wrapper">
-				<div id="sidebar-wrapper" role="navigation">
-					<ul class="sidebar-icon">
-						<li class="sidebar-header"><a href="../index.html" title="На Главную"><span class="sitelogo"></span></a></li>
-						<li><a href="https://vk.com/englishextragithubio" class="vk-50x50"></a></li>
-						<li><a href="https://soundcloud.com/user633010415" class="soundcloud-50x50"></a></li>
-						<li><a href="https://twitter.com/englishextra" class="twitter-50x50"></a></li>
-						<li><a href="https://vimeo.com/album/3325167" class="vimeo-50x50"></a></li>
-					</ul>
-					<div class="tab-content">
-						<ul class="sidebar-group tab-pane active" id="tabelements">
-							<li class="navigation-header">
-							</li>
+			<ul id="panel-nav-menu" class="panel-nav-menu">
 				<li><a href="../pages/contents.html">Содержание</a></li>
 				<li><a href="../pages/articles/articles_reading_rules_utf.html">Правила чтения</a></li>
 				<li><a href="../pages/grammar/grammar_usage_of_articles_a_the.html">Артикли a&#160;/ an и&#160;the</a></li>
@@ -380,54 +366,50 @@ $SQLITE_CACHE = null;
 				<li><a href="../pages/grammar/grammar_phrasal_verbs.html">Фразовые глаголы</a></li>
 				<li><a href="../pages/aids/aids_topics.html">Топики на&#160;английском</a></li>
 				<li><a href="../pages/tests/tests_grammar_tests_with_answers.html">Тесты по&#160;грамматике</a></li>
-				<li><a href="../pages/tests/tests_gia_ege_letter_sample.html">ГИА&#160;/ ЕГЭ: Задания&#160;33, 39</a></li>
+				<li><a href="../pages/tests/tests_gia_ege_letter_sample.html">ГИА&#160;/ ЕГЭ: Задания&#160;33, 39, 40</a></li>
 				<li><a href="../pages/tests/tests_ege_essay_sample.html">ЕГЭ: Задание&#160;40</a></li>
 				<li><a href="../sitemap.html">Карта сайта</a></li>
-						</ul>
+			</ul>
+			<a href="../pages/contents.html" class="btn-nav-menu" id="btn-nav-menu" onclick="return!1;" title="Содержание"></a>
+			<div class="panel-nav-top"></div>
+			<div class="container" id="container" role="main">
+				<div class="content-wrapper">
+					<div class="grid-narrow grid-pad">
+						<div class="col col-1-1">
+							<div class="content">
+								<h1>Поиск</h1>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div id="content-wrapper">
-					<div class="main-header" role="heading">
-						<h3>
-							<span id="show-menu" class="holder-btn-nav-menu"><a href="#" class="btn-nav-menu" title="Меню"></a></span>
-							Поиск
-						</h3>
-					</div>
-					<div class="main-content padding">
-						<div class="row" role="grid">
-							<div class="col-lg-8">
-								<div id="search" class="module module-clean">
-									<div class="module-header">
-										<h4>Ваш запрос</h4>
-									</div>
-									<div class="module-content">
-										<form class="form-horizontal" method="post" action="/search/" id="search_form" enctype="application/x-www-form-urlencoded">
-											<div class="form-group">
-												<p>
-													<label class="control-label" for="text">Введите одно ключевое слово:</label>
-													<input class="form-control" type="text" name="q" id="text" autocomplete="off" placeholder="Найти" />
-												</p>
-												<p class="textright">
-													<input class="btn btn-default" id="search_form_reset_button" value="Очистить" type="reset" />
-													<input class="btn btn-primary" id="search_form_submit_button" value="Отправить" type="submit" />
-												</p>
-											</div>
-										</form>
-									</div>
+					<div class="grid-narrow grid-pad">
+						<div class="col col-1-1">
+							<div class="content">
+								<h2>Ваш запрос</h2>
+								<div>
+									<form method="post" action="/search/" id="search_form" enctype="application/x-www-form-urlencoded">
+										<p>
+											<label for="text">Введите одно ключевое слово:</label>
+											<input type="text" name="q" id="text" autocomplete="off" placeholder="Найти" />
+										</p>
+										<p class="textcenter">
+											<input class="btn btn-default" id="search_form_reset_button" value="Очистить" type="reset" /><input class="btn btn-primary" id="search_form_submit_button" value="Отправить" type="submit" />
+										</p>
+									</form>
 								</div>
+								<div class="hr"></div>
 								<?php
 									if (!empty($query)) {
 										if (!empty($r)) {
 											echo '<div class="module module-clean">
 													<div class="module-header">
-														<h4>Результат</h4>
+														<h2>Результат</h2>
 													</div>
 													<div id="search_results" class="module-content">' . $p . '</div>
 												</div>' . "\n";
 										} else {
 											echo '<div class="module module-clean">
 													<div class="module-header">
-														<h4>Результат</h4>
+														<h2>Результат</h2>
 													</div>
 													<div id="search_results" class="module-content">
 														<p>Ничего не&#160;найдено. Однако Ваши запросы фиксируются и&#160;учитываются редактором. Некоторые страницы удаляются по причине недостаточного качества или сомнительного с&#160;точки зрения авторских прав контента. Стоит так&#160;же уточнить, что ресурс некоммерческий и&#160;неразвлекательный</p>
@@ -437,43 +419,22 @@ $SQLITE_CACHE = null;
 									} else {
 										echo '<div class="module module-clean">
 												<div class="module-header">
-													<h4>Результат</h4>
+													<h2>Результат</h2>
 												</div>
 												<div id="search_results" class="module-content">
 													<p>Введите ключевое слово в поле поиска&#160;/ Type your keyword in the search box</p>
 												</div>
 											</div>' . "\n";
 									}
-								?>
+								?>				
 							</div>
-<div class="col-lg-4">
-	<div class="module module-clean">
-		<div class="module-header">
-			<h4><a href="https://maps.yandex.ru/org/repetitor_sergey_shimanskiy/1085972151">Репетитор английского</a></h4>
-		</div>
-		<div class="module-content">
-			<p>Преподаю английский школьникам, студентам и&#160;взрослым в&#160;частном порядке в&#160;Тушино. &#171;С нуля&#187;, подтянуть, улучшить, подготовка к&#160;ЕГЭ</p>
-		</div>
-	</div>
-	<div class="module module-clean">
-		<div class="module-header">
-			<h4><a href="https://englishextra.github.io/libs/early.js/">early.js&#160;&#8212; to be included first</a></h4>
-		</div>
-		<div class="module-content">
-			<p>This bunch of third-party JS libraries is meant to be included first in your HTML markup and helps to: detect user device, detect browser capabilities, conditionally load other JS scripts</p>
-		</div>
-	</div>
-	<div class="module module-clean">
-		<div class="module-header">
-			<h4><a href="https://englishextra.github.io/portfolio/">Сделаю сайт-визитку</a></h4>
-		</div>
-		<div class="module-content">
-			<p>В течение трех рабочих дней сверстаю макет сайта-визитки для Вашего бизнеса. Это&#160;обойдется Вам в&#160;среднем в&#160;4500&#8212;8000&#160;рублей в&#160;зависимости от&#160;требований к&#160;интерфейсу</p>
-		</div>
-	</div>
-</div>
 						</div>
-						<div class="footer" role="contentinfo">
+					</div>
+					<div class="grid-narrow grid-pad">
+						<div class="col col-1-1">
+							<div class="footer">
+								<p class="copyright">Это произведение доступно по&#160;<a href="https://creativecommons.org/licenses/by-nd/4.0/" rel="license">лицензии Creative Commons &#171;Attribution-NoDerivatives&#187; (&#171;Атрибуция&#160;&#8212; Без&#160;производных произведений&#187;) 4.0&#160;Всемирная</a>. <a href="https://github.com/englishextra">Исходный код</a> доступен публично. Права на&#160;иллюстрации принадлежат: 1)&#160;пользователям <a href="https://www.behance.net/">Behance</a>, либо Adobe Systems Incorporated; 2)&#160;пользователям <a href="https://www.domestika.org/">Domestika</a>, либо Domestika; 3)&#160;пользователям <a href="https://www.flickr.com/">Flickr</a>, либо Flickr, a&#160;Yahoo company; 4)&#160;пользователям <a href="https://unsplash.com/">Unsplash</a>, либо Unspalsh, a&#160;project by&#160;Crew. &#169;&#160;englishextra, 2006&#8212;2017</p>
+							</div>
 						</div>
 					</div>
 				</div>
