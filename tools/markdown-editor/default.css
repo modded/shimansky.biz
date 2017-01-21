@@ -8,12 +8,14 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
  background: #f0f0f0;
  -webkit-text-size-adjust: none;
 }
+
 .hljs,
 .hljs-subst,
 .hljs-tag .hljs-title,
 .nginx .hljs-title {
  color: black;
 }
+
 .hljs-string,
 .hljs-title,
 .hljs-constant,
@@ -42,6 +44,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .coffeescript .hljs-attribute {
  color: #800;
 }
+
 .smartquote,
 .hljs-comment,
 .hljs-annotation,
@@ -51,6 +54,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .markdown .hljs-blockquote {
  color: #888;
 }
+
 .hljs-number,
 .hljs-date,
 .hljs-regexp,
@@ -68,6 +72,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .markdown .hljs-link_url {
  color: #080;
 }
+
 .hljs-label,
 .hljs-javadoc,
 .ruby .hljs-string,
@@ -99,6 +104,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .hljs-phony {
  color: #88f;
 }
+
 .hljs-keyword,
 .hljs-id,
 .hljs-title,
@@ -121,13 +127,16 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .hljs-status {
  font-weight: bold;
 }
+
 .asciidoc .hljs-emphasis,
 .markdown .hljs-emphasis {
  font-style: italic;
 }
+
 .nginx .hljs-built_in {
  font-weight: normal;
 }
+
 .coffeescript .javascript,
 .javascript .xml,
 .lasso .markup,
@@ -138,3 +147,4 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .xml .hljs-cdata {
  opacity: 0.5;
 }
+

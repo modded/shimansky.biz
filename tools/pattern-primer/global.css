@@ -20,19 +20,23 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	text-align: left;
 	background: transparent;
 }
+
 header, footer, figure, details, hgroup,
 section, article, nav, aside {
 	display: block;
 }
+
 img, object, audio, video, svg {
 	max-width: 100%;
 }
+
 /* @end Reset */
 /* @group Typography */
 html {
 	border-top: 0.5em solid #693;
 	background-color: #eee;
 }
+
 body {
 	background-color: #fefefe;
 	background: rgba(255,255,255,0.9);
@@ -47,6 +51,7 @@ body {
 	border-color: #ddd;
 	border-color: rgba(0,0,0,0.13);
 }
+
 h1 {
 	font-family: Palatino, Cambria, Georgia, serif;
 	font-weight: normal;
@@ -57,6 +62,7 @@ h1 {
 	color: #444;
 	border-bottom: 0.2em solid #693;
 }
+
 h2 {
 	font-family: Palatino, Cambria, Georgia, serif;
 	font-weight: normal;
@@ -67,6 +73,7 @@ h2 {
 	color: #555;
 	border-bottom: 0.13333em solid #693;
 }
+
 h3 {
 	font-family: Palatino, Cambria, Georgia, serif;
 	font-weight: normal;
@@ -77,6 +84,7 @@ h3 {
 	color: #666;
 	border-bottom: 0.1em solid #693;
 }
+
 h4 {
 	font-family: Palatino, Cambria, Georgia, serif;
 	font-weight: normal;
@@ -86,6 +94,7 @@ h4 {
 	margin-bottom: 1.000em;
 	color: #777;
 }
+
 h5 {
 	font-family: Palatino, Cambria, Georgia, serif;
 	font-weight: normal;
@@ -94,30 +103,37 @@ h5 {
 	padding-top: 1.1111em;
 	color: #888;
 }
+
 h6 {
 	padding-top: 1.000em;
 	color: #999;
 }
+
 b, strong {
 	font-weight: bold;
 }
+
 i, em {
 	font-style: italic;
 }
+
 hr {
 	border: none;
 	height: 0.1em;
 	background: #ccc;
 	background-color: rgba(0,0,0,0.2);
 }
+
 p, ul, ol, hr, table, form, fieldset {
 	margin: 1.25em 0;
 }
+
 li {
 	list-style-position: inside;
 	margin-left: 1.000em;
 	text-indent: -1em;
 }
+
 blockquote {
 	margin: 1.000em;
 	border-top: 0.1em solid;
@@ -136,9 +152,11 @@ blockquote {
 	-o-border-radius: 0.25em;
 	border-radius: 0.25em;
 }
+
 blockquote em {
 	font-style: normal;
 }
+
 figcaption {
 	font-family: Palatino, Cambria, Georgia, serif;
 	font-style: italic;
@@ -146,6 +164,7 @@ figcaption {
 	line-height: 1.4286;
 	color: #666;
 }
+
 article > p,
 article section > p {
 	font-size: 1.125em;
@@ -159,6 +178,7 @@ article section > p {
 	text-align: justify;
 */
 }
+
 article footer+p:first-letter,
 article section>h2+p:first-letter,
 article section>p:first-child:first-letter {
@@ -174,6 +194,7 @@ article section>p:first-child:first-letter {
 	color: #fff;
 	border: 1px solid #693;
 }
+
 time {
 	display: block;
 	text-align: right;
@@ -185,9 +206,11 @@ time {
 	letter-spacing: 0.2em;
 	color: #888;
 }
+
 time:before {
 	content: '—';
 }
+
 /* @end Typography */
 /* @group Links */
 a {
@@ -196,28 +219,34 @@ a {
 	border-bottom-width: 1px;
 	white-space: pre-wrap;
 }
+
 a:link,
 a:visited {
 	color: #369;
 	border-bottom-color: #369;
 }
+
 a[href]:hover,
 a[href]:focus {
 	color: #c03;
 	border-bottom-color: #c03;
 }
+
 a:active {
 	color: #900;
 	border-bottom-color: #900;
 }
+
 .logo a, h1 a, h2 a, h3 a {
 	border: none;
 }
+
 /* @end Links */
 /* @group Forms */
 label {
 	cursor: pointer;
 }
+
 input[type],
 textarea,
 select {
@@ -232,21 +261,25 @@ select {
 	-o-border-radius: 0.25em;
 	border-radius: 0.25em;
 }
+
 input[type="checkbox"],
 input[type="radio"],
 input[type="image"] {
 	width: auto;
 }
+
 input:focus,
 textarea:focus,
 select:focus {
 	outline: none;
 	border-color: #666;
 }
+
 input[required],
 textarea[required] {
 	border-color: #999;
 }
+
 button,
 input[type="button"],
 input[type="submit"] {
@@ -271,6 +304,7 @@ input[type="submit"] {
 	-o-border-radius: 1.000em;
 	border-radius: 1.000em;
 }
+
 button:hover,
 button:focus,
 input[type="button"]:hover,
@@ -285,6 +319,7 @@ input[type="submit"]:focus {
 	background-image: linear-gradient(top,#d04,#b02);
 	color: #fff;
 }
+
 button:active,
 input[type="button"]:active,
 input[type="submit"]:active {
@@ -295,6 +330,7 @@ input[type="submit"]:active {
 	background-image: linear-gradient(top,#800,#a00);
 	color: #fff;
 }
+
 /* @group search */
 [role="search"] {
 	position: relative;
@@ -306,12 +342,14 @@ input[type="submit"]:active {
 	-o-border-radius: 1.000em;
 	border-radius: 1.000em;
 }
+
 [role="search"] input {
 	border: none;
 	-webkit-appearance: none;
 	-o-border-radius: 0;
 	border-radius: 0;
 }
+
 [role="search"] input[type="image"] {
 	background-color: #fff;
 	position: absolute;
@@ -320,6 +358,7 @@ input[type="submit"]:active {
 	right: 0.6em;
 	padding: 0.2em 0.2em;
 }
+
 /* @end search */
 /* @end Forms */
 /* @group Classes */
@@ -327,11 +366,13 @@ input[type="submit"]:active {
 .pagination {
 	font-family: Calibri, 'Helvetica Neue', Arial, sans-serif;
 }
+
 .pagination li {
 	display: inline;
 	margin-left: 0;
 	text-indent: 0;
 }
+
 .pagination a {
 	display: inline-block;
 	padding: 0.5em 1.000em;
@@ -344,20 +385,24 @@ input[type="submit"]:active {
 	border-radius: 0.25em;
 	background-clip: padding-box;
 }
+
 .pagination a:link,
 .pagination a:visited {
 	color: #fff;
 	background-color: #369;
 }
+
 .pagination a[href]:hover,
 .pagination a[href]:focus {
 	color: #fff;
 	background-color: #c03;
 }
+
 .pagination a:active {
 	color: #fff;
 	background-color: #900;
 }
+
 /* @end pagination*/
 /* @group control */
 a.control {
@@ -373,6 +418,7 @@ a.control {
 	border-radius: 0.25em;
 	background-clip: padding-box;
 }
+
 a.control:link,
 a.control:visited {
 	background-color: #369;
@@ -382,6 +428,7 @@ a.control:visited {
 	background-image: linear-gradient(top,#47a,#258);
 	color: #fff;
 }
+
 a.control:hover,
 a.control:focus {
 	outline: none;
@@ -392,6 +439,7 @@ a.control:focus {
 	background-image: linear-gradient(top,#d04,#b02);
 	color: #fff;
 }
+
 a.control:active {
 	background-color: #900;
 	background-image: -webkit-gradient(linear,0% 0%,0% 100%,from(#800),to(#a00));
@@ -400,6 +448,7 @@ a.control:active {
 	background-image: linear-gradient(top,#800,#a00);
 	color: #fff;
 }
+
 /* @end control */
 /* @group feedback */
 .feedback {
@@ -413,16 +462,19 @@ a.control:active {
 	border-radius: 0.25em;
 	background-clip: padding-box;
 }
+
 .error {
 	background-color: #fcc;
 	border-color: #c99;
 }
+
 /* @end feedback */
 /* @group options */
 .options {
 	list-style: none;
 	border-top: 1px solid #ccc;
 }
+
 .options li {
 	text-indent: 0;
 	font-family: Calibri, 'Helvetica Neue', Arial, sans-serif;
@@ -433,9 +485,11 @@ a.control:active {
 	padding: 0.3125em 0.625em;
 	border-bottom: 1px solid #ccc;
 }
+
 .options a {
 	display: block;
 	border: none;
 }
+
 /* @end options*/
 /* @end Classes */

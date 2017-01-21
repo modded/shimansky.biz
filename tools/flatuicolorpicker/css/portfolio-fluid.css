@@ -5,6 +5,7 @@
  /* flexbox setup */
  
 }
+
 .grid
 {
  width: 20%;
@@ -17,6 +18,7 @@
  margin:0;
 	 list-style:none;
 }
+
 	.item
 {
 	position: absolute;
@@ -29,6 +31,7 @@
  text-transform: uppercase;
  padding: 35%;
 }
+
 .item:hover
 {
  display: inline;
