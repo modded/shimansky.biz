@@ -519,7 +519,7 @@ template {
 
 .masonry-grid-item {
 	float: left;
-	box-shadow: 0.125em 0.125em 0.125em 0 rgba(50, 50, 50, 0.3);
+	box-shadow: 0 0.250em 0.250em 0 rgba(150,150,150,0.2);
 	margin: 1.500%;
 }
 
