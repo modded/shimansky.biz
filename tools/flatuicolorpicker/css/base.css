@@ -109,7 +109,7 @@
 
 /* #Links
 ================================================== */
-	a, a:visited { color: #fff; text-decoration: underline; outline: 0 auto;; }
+	a, a:visited { color: #fff; text-decoration: underline; outline: 0 auto; }
 
 	a:hover, a:focus { color: #bababa; }
 
