@@ -521,6 +521,14 @@ footer:after {
 
 body {
 	overflow-x: hidden;
+	/*!
+	 *
+	 */
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+	/*!
+	 *
+	 */
 }
 
 /* == Prototype faster - Vertical rhythm
@@ -545,8 +553,16 @@ input:focus,
 textarea:focus,
 button {
 	text-decoration: none;
-	-webkit-transition: all .3s ease-out;
-	transition: all .3s ease-out;
+	/*!
+	 *
+	 */
+	-webkit-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+	/*!
+	 *
+	 */
 }
 
 p a:active {
@@ -1947,11 +1963,11 @@ section,
 	margin-left: auto;
 	text-align: center;
 	/*!
-	 * 
+	 *
 	 */
 	line-height: 4rem;
 	/*!
-	 * 
+	 *
 	 */
 }
 
@@ -3826,7 +3842,7 @@ Base
 
 body {
 	color: #333;
-	background-color: #f7f9fb;
+	background-color: #F0F0F0;
 }
 
 /* :focus {
@@ -4068,8 +4084,8 @@ Slides - Backgrounds <section class="bg-primary">
 /* Gray Gradient (horizontal) */
 
 .bg-gradient-gray {
-	background: -webkit-linear-gradient(left, #f7f9fb 0, #dee2e6 100%);
-	background: linear-gradient(90deg, #f7f9fb 0, #dee2e6 100%);
+	background: -webkit-linear-gradient(left, #F0F0F0 0, #dee2e6 100%);
+	background: linear-gradient(90deg, #F0F0F0 0, #dee2e6 100%);
 	color: #333;
 	text-shadow: none;
 }
@@ -4750,7 +4766,7 @@ Table of Contents
 .toc,
 .toc ol > li:before,
 .chapter {
-	background-color: #f7f9fb;
+	background-color: #F0F0F0;
 }
 
 .toc li .toc-page:before {
