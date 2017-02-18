@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Tinter-Shader</title>
+		<link rel="stylesheet" type="text/css" href="./reset.css">
+		<link rel="stylesheet" type="text/css" href="./960.css">
+		<link rel="stylesheet" type="text/css" href="./styles.css">
+		<link rel="stylesheet" type="text/css" href="./jquery.css">
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" type="text/css" href="styles_IE6.css" />
+		<![endif]-->
+		<script type="text/javascript" src="./jquery.js"></script>
+		<script type="text/javascript" src="./jquery.fancybox.js"></script>
+		<script type="text/javascript" src="./tinter-shader.js"></script>
+		<!--	*********************************************************************
+		Tinter-Shader web application, (c) Copyright 2010 High Integrity Design, LLC
+		http://www.highintegritydesign.com
+		licensed under a GPL 3 license.
+		http://www.gnu.org/licenses/
+		********************************************************************* -->
+	</head>
+	<body>
+		<div class="container_12">
+			<div id="about-content">
+				<h2>What Is Tinter-Shader?</h2>
+				<p>
+					Tinter-Shader is a web application that generates tints and shades from an RGB color pallette that you give it.
+					I wrote it because I needed a tool like this and couldn’t find one on the web. And, because I
+					wanted to practice and improve my JavaScript and JQuery skills.
+				</p>
+				<h2>What’s It Good For?</h2>
+				<p>
+					Tinter-Shader is great for when you already have a color pallete for your design, but you need some tints and shades
+					that would make good colors for backgrounds, text, forms and panels that fit into your existing color scheme.
+				</p>
+				<h2>Inspiration</h2>
+				<p>
+					Inspiration for Tinter-Shader came from two of my favorite tools,
+					Color Blender (http://meyerweb.com/eric/tools/color-blend/) and Color
+					Scheme Designer (http://colorschemedesigner.com/).  These are both
+					excellent tools which I use often.  Tinter-Shader is a different and
+					complementary tool to these.
+				</p>
+				<h2>Enjoy...and a Disclaimer</h2>
+				<p>
+					I hope you enjoy Tinter-Shader.  If you find it useful, please
+					consider mentioning my name and linking to me from your site to share
+					some Google Love.  Last but not least, this is a free tool— no warranty
+					is provided.  Use at your own risk.  It works for me!
+				</p>
+			</div>
+			<!-- about-content -->
+			<div id="header">
+				<div class="grid_6">
+					<h1>Color Tinter-Shader</h1><em>Beta</em>
+					<h2>Choose your colors, then get your tints &amp; shades</h2>
+				</div>
+				<div class="grid_6"></div>
+				<div class="clear"></div>
+			</div>
+			<!-- header -->
+			<div id="wrapper">
+				<div class="grid_3">
+					<h3>1. Enter your color values</h3>
+					<p>
+						Enter your colors as hexadecimal RGB values separated by spaces or returns. For example:
+					</p>
+					<form id="color-entry-form" action="#" method="post" name="color-entry-form">
+						<textarea class="monospace" rows="10" cols="20" id="color-values" name="color-values">D54848
+</textarea>
+						<h3>2. Get your tints &amp; shades</h3>
+						<input value="Get Tints &amp; Shades!" type="submit">
+					</form>
+				</div><!-- grid_3 -->
+				<div class="grid_9">
+					<div id="shades-tints"></div>
+				</div><!-- grid_9 -->
+				<div class="clear"></div>
+			</div><!-- wrapper -->
+			<div class="clear"></div>
+			<div id="footer">
+				<div class="grid_3">
+					<p>
+						© 2010 High Integrity Design, LLC
+						<br>
+					</p>
+				</div>
+				<!-- grid_3 -->
+				<div class="grid_6">
+					<p>
+						Tinter-Shader by <a href="https://www.highintegritydesign.com/" rel="cc:attributionURL">High Integrity Design LLC</a>.
+						<br>
+					</p>
+				</div>
+				<!-- grid_6 -->
+				<div class="grid_3" id="about-footer">
+					<p>
+						<a id="about-link" href="#about-content">About Tinter-Shader</a>
+					</p>
+				</div>
+				<!-- grid_3 -->
+				<div class="clear"></div>
+			</div>
+			<!-- footer -->
+		</div><!-- container_12 -->
+	</body>
+</html>
