@@ -313,11 +313,11 @@ u,
 
 .panel-nav-menu li a:hover,
 .panel-nav-menu li a:focus {
-	background-color: $color-hex-hover-dark-ui-panel-item-bg;
+	background-color: $color-hex-dark-ui-panel-hover-item-bg;
 }
 
 .panel-nav-menu li a.is-active {
-	background-color: $color-hex-darker-accent;
+	background-color: $color-hex-dark-ui-panel-active-item-bg;
 }
 
 .panel-nav-menu li a:before {
@@ -434,7 +434,7 @@ u,
 	left: 33.000pt;
 	color: $color-hex-body-text;
 	background-color: $color-hex-ui-bar-bg;
-	border: 0.063rem solid $color-hex-accent;
+	border: 0.063rem solid $color-hex-ui-menu-border;
 	box-shadow: 0.125em 0.125em 0.125em 0 $color-rgba-ui-bar-shadow;
 	opacity: 0;
 	transition: visibility 0s, opacity 0.2s linear;
@@ -469,7 +469,7 @@ u,
 .panel-menu-more li a:focus {
 	text-decoration: none;
 	color: inherit;
-	background-color: $color-hex-lighter-accent;
+	background-color: $color-hex-ui-menu-hover-item-bg;
 }
 
 /**
@@ -853,8 +853,8 @@ u,
 
 .col .btn-secondary:hover {
 	color: inherit;
-	background-color: $color-hex-hover-button-secondary-bg;
-	border-color: $color-hex-hover-button-secondary-bg;
+	background-color: $color-hex-hover-ui-icon-bg;
+	border-color: $color-hex-hover-ui-icon-bg;
 }
 
 .col .btn-link,
@@ -866,7 +866,9 @@ u,
 	color: inherit;
 	background-color: transparent;
 	border-color: $color-rgba-ui-icon-bg;
-}.col .btn-link:hover {
+}
+
+.col .btn-link:hover {
 	color: inherit;
 	background-color: transparent;
 	border-color: $color-rgba-ui-icon-bg;
@@ -1153,15 +1155,15 @@ u,
 }
 
 .bg-color-hex-accent {
-	background-color: $color-hex-accent;
+	background-color: $color-hex-ui-menu-border;
 }
 
 .bg-color-hex-darker-accent {
-	background-color: $color-hex-darker-accent;
+	background-color: $color-hex-dark-ui-panel-active-item-bg;
 }
 
 .bg-color-hex-lighter-accent {
-	background-color: $color-hex-lighter-accent;
+	background-color: $color-hex-ui-menu-hover-item-bg;
 }
 
 .bg-color-hex-highlight {
@@ -1236,8 +1238,8 @@ u,
 	background-color: $color-hex-hover-button-bg;
 }
 
-.bg-color-hex-hover-button-secondary-bg {
-	background-color: $color-hex-hover-button-secondary-bg;
+.color-hex-hover-ui-icon-bg {
+	background-color: $color-hex-hover-ui-icon-bg;
 }
 
 .bg-color-hex-active-input-bg {
@@ -1253,7 +1255,7 @@ u,
 }
 
 .bg-color-hex-hover-dark-ui-panel-item-bg {
-	background-color: $color-hex-hover-dark-ui-panel-item-bg;
+	background-color: $color-hex-dark-ui-panel-hover-item-bg;
 }
 
 .bg-color-hex-darker-ui-panel-bg {
@@ -1289,11 +1291,11 @@ u,
 }
 
 .bg-color-rgba-grid-item-shadow {
-	background-color: $color-rgba-grid-item-shadow;
+	background-color: $color-rgba-card-shadow;
 }
 
 .bg-color-hex-hint-bg {
-	background-color: $color-hex-hint-bg;
+	background-color: $color-rgba-hint-bg;
 }
 
 .bg-color-rgba-loading-spinner-text {
